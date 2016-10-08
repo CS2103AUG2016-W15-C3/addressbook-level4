@@ -9,7 +9,7 @@ import seedu.taskell.model.tag.Tag;
 import seedu.taskell.model.tag.UniqueTagList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an task manager
  */
 public interface ReadOnlyTaskManager {
 
