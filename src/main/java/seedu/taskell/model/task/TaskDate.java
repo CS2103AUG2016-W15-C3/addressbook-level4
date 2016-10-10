@@ -1,10 +1,14 @@
 package seedu.taskell.model.task;
 
 import java.util.StringTokenizer;
+
+import seedu.taskell.commons.exceptions.IllegalValueException;
+
 import java.util.Locale;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
@@ -44,34 +48,70 @@ public class TaskDate {
     public static final int ONLY_CONTAIN_MONTH = 4;
     public static final int ONLY_CONTAIN_DAY_AND_MONTH = 5;
     public static final int ONLY_CONTAIN_MONTH_AND_YEAR = 6;
+    public static final int FULL_DATE_DISPLAY = 7;
 
     public static final int NUM_DAYS_IN_A_WEEK = 7;
     public static final int NUM_MONTHS_IN_A_YEAR = 12;
 
     public static final String FIRST_DAY_OF_THE_MONTH = "1";
+    
+    public static final int LENGTH_OF_KEYWORD_BY = 2+1;
 
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy");
     SimpleDateFormat sdf = new SimpleDateFormat("d M y");
+    
+    public static final String MESSAGE_TASK_DATE_CONSTRAINTS =
+            "Task dates should be separated by '-' or '.'"
+            + "\nSpelling of month should be in full or 3-letters";
 
-    String day;
-    String month;
-    String year;
-    String dayNameInWeek;
-
+    public String day;
+    public String month;
+    public String year;
+    public String dayNameInWeek;
+    public String taskDateInputByUser;
+    public String taskDateForDisplay;
+    
     /**
      * Initialize the different fields
+     * @throws IllegalValueException 
      */
-    public TaskDate(String fullDate) {
+    public TaskDate(String fullDate) throws IllegalValueException {
+        assert fullDate != null;
+        if (!isValidDate(fullDate)) {
+            throw new IllegalValueException(MESSAGE_TASK_DATE_CONSTRAINTS);
+        }
+        taskDateInputByUser = fullDate;
         getPartOfDate(fullDate);
     }
-
+    
     /**
      * Initialize the different fields given the different permutation of dates
      * @param string
      * @param formatOfDate
+     * @throws IllegalValueException 
      */
-    public TaskDate(String string, int formatOfDate) {
+    public TaskDate(String string, int formatOfDate) throws IllegalValueException {
+        assert string != null;
+        
+        taskDateInputByUser = string;
+        
+        if (formatOfDate == FULL_DATE_DISPLAY) {
+            StringTokenizer st = new StringTokenizer(string, " ,");
+            dayNameInWeek = st.nextToken();
+            day = st.nextToken();
+            month = st.nextToken();
+            year = st.nextToken();
+            taskDateForDisplay = string;
+            string = day + "-" + month + "-" + year;
+        }
+        
+        if (!isValidDate(string)) {
+            throw new IllegalValueException(MESSAGE_TASK_DATE_CONSTRAINTS);
+        }
+        
         LocalDate today = LocalDate.now();
+        
+        try {
 
         if (formatOfDate == TODAY) {
             getPartOfDate(today.getDayOfMonth() + "", today.getMonthValue() + "", today.getYear() + "");
@@ -89,7 +129,9 @@ public class TaskDate {
             LocalDate finalDate = today.plusDays(daysToAdd);
             getPartOfDate(finalDate.getDayOfMonth() + "", finalDate.getMonthValue() + "", finalDate.getYear() + "");
         } else if (formatOfDate == ONLY_CONTAIN_MONTH) {
-            getPartOfDate(FIRST_DAY_OF_THE_MONTH, string, getThisYear());
+            int month = convertMonthIntoInteger(string);
+            System.out.println("MONTH:" + month);
+            getPartOfDate(FIRST_DAY_OF_THE_MONTH, month+"", getThisYear());
         } else if (formatOfDate == ONLY_CONTAIN_DAY_AND_MONTH) {
             StringTokenizer st = new StringTokenizer(string, " .-");
             day = st.nextToken();
@@ -101,9 +143,12 @@ public class TaskDate {
             year = st.nextToken();
             getPartOfDate(FIRST_DAY_OF_THE_MONTH, month, year);
         }
+        } catch (DateTimeException dte) {
+            throw new IllegalValueException(MESSAGE_TASK_DATE_CONSTRAINTS);
+        }
     }
 
-    public void getPartOfDate(String dateToConvert) {
+    public void getPartOfDate(String dateToConvert) throws DateTimeException {
         StringTokenizer st = new StringTokenizer(dateToConvert, " .-");
         String[] tokenArr = new String[3];
         int i = 0;
@@ -116,18 +161,27 @@ public class TaskDate {
         String month = convertMonthIntoInteger(tokenArr[1]) + "";
         String year = tokenArr[2];
 
+        try {
         getPartOfDate(day, month, year);
+        } catch (DateTimeException dte) {
+            throw dte;
+        }
     }
 
-    private void getPartOfDate(String day, String month, String year) {
+    private void getPartOfDate(String day, String month, String year) throws DateTimeException {
+        try {
         LocalDate localDate = LocalDate.of(Integer.valueOf(year), convertMonthIntoInteger(month), Integer.valueOf(day));
-        dayNameInWeek = localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
+        this.dayNameInWeek = localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
 
         this.day = day;
         this.year = year;
 
         month = localDate.getMonth().getDisplayName(TextStyle.FULL, Locale.US).toLowerCase();
         this.month = month.substring(0, 1).toUpperCase() + month.substring(1);
+        this.taskDateForDisplay = dayNameInWeek + ", " + day + " " + month + " " + year;
+        } catch (DateTimeException dte) {
+            throw dte;
+        }
     }
 
     public static boolean isValidDate(String dateToValidate) {
@@ -324,6 +378,8 @@ public class TaskDate {
             // Fallthrough
         case "sep":
             // Fallthrough
+        case "sept":
+            // Fallthrough
         case "september":
             return SEPTEMBER;
         case OCTOBER + "":
@@ -363,7 +419,7 @@ public class TaskDate {
 
     @Override
     public String toString() {
-        return dayNameInWeek + ", " + day + " " + month + " " + year;
+        return taskDateForDisplay;
     }
     
     @Override

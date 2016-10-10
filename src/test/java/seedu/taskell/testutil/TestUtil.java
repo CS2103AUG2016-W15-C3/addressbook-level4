@@ -66,15 +66,15 @@ public class TestUtil {
     private static Task[] getSampleTaskData() {
         try {
             return new Task[]{
-                    new Task(new Description("Ali Muster"), new UniqueTagList()),
-                    new Task(new Description("Boris Mueller"), new UniqueTagList()),
-                    new Task(new Description("Carl Kurz"), new UniqueTagList()),
-                    new Task(new Description("Daniel Meier"), new UniqueTagList()),
-                    new Task(new Description("Elle Meyer"), new UniqueTagList()),
-                    new Task(new Description("Fiona Kunz"), new UniqueTagList()),
-                    new Task(new Description("George Best"), new UniqueTagList()),
-                    new Task(new Description("Hoon Meier"), new UniqueTagList()),
-                    new Task(new Description("Ida Mueller"), new UniqueTagList())
+                    new Task(new Description("Ali Muster"), new TaskDate("1-1-1111"), new UniqueTagList()),
+                    new Task(new Description("Boris Mueller"), new TaskDate("2-2-2222"), new UniqueTagList()),
+                    new Task(new Description("Carl Kurz"), new TaskDate("3-3-3333"), new UniqueTagList()),
+                    new Task(new Description("Daniel Meier"), new TaskDate("4-4-4444"), new UniqueTagList()),
+                    new Task(new Description("Elle Meyer"), new TaskDate("5-5-5555"), new UniqueTagList()),
+                    new Task(new Description("Fiona Kunz"), new TaskDate("6-6-6666"), new UniqueTagList()),
+                    new Task(new Description("George Best"), new TaskDate("7-7-7777"), new UniqueTagList()),
+                    new Task(new Description("Hoon Meier"), new TaskDate("8-8-8888"), new UniqueTagList()),
+                    new Task(new Description("Ida Mueller"), new TaskDate("9-9-9999"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;

@@ -3,7 +3,10 @@ package seedu.taskell.storage;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.taskell.commons.exceptions.IllegalValueException;
-import seedu.taskell.model.task.*;
+import seedu.taskell.model.task.ReadOnlyTask;
+import seedu.taskell.model.task.Task;
+import seedu.taskell.model.task.Description;
+import seedu.taskell.model.task.TaskDate;
 import seedu.taskell.model.tag.Tag;
 import seedu.taskell.model.tag.UniqueTagList;
 
@@ -17,6 +20,8 @@ public class XmlAdaptedTask {
 
     @XmlElement(required = true)
     private String description;
+    @XmlElement(required = true)
+    private String taskDate;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -34,6 +39,7 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         description = source.getDescription().description;
+        taskDate = source.getTaskDate().taskDateForDisplay;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -51,7 +57,8 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final Description description= new Description(this.description);
+        final TaskDate taskDate= new TaskDate(this.taskDate);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(description, tags);
+        return new Task(description, taskDate, tags);
     }
 }

@@ -9,6 +9,7 @@ import seedu.taskell.model.tag.UniqueTagList;
 public class TestTask implements ReadOnlyTask {
 
     private Description description;
+    private TaskDate taskDate;
     private UniqueTagList tags;
 
     public TestTask() {
@@ -19,14 +20,19 @@ public class TestTask implements ReadOnlyTask {
         this.description= description;
     }
 
-    
+    public void setTaskDate(TaskDate taskDate) {
+        this.taskDate= taskDate;
+    }
 
     @Override
     public Description getDescription() {
         return description;
     }
 
-    
+    @Override
+    public TaskDate getTaskDate() {
+        return taskDate;
+    }
 
     @Override
     public UniqueTagList getTags() {
@@ -41,6 +47,7 @@ public class TestTask implements ReadOnlyTask {
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
         sb.append("add " + this.getDescription().description+ " ");
+        sb.append("by " + this.getTaskDate().taskDateInputByUser+ " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }

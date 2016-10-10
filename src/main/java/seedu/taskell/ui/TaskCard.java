@@ -17,6 +17,8 @@ public class TaskCard extends UiPart{
     @FXML
     private Label id;
     @FXML
+    private Label taskDate;
+    @FXML
     private Label tags;
 
     private ReadOnlyTask task;
@@ -37,6 +39,7 @@ public class TaskCard extends UiPart{
     public void initialize() {
         description.setText(task.getDescription().description);
         id.setText(displayedIndex + ". ");
+        taskDate.setText(task.getTaskDate().taskDateForDisplay);
         tags.setText(task.tagsString());
     }
 
