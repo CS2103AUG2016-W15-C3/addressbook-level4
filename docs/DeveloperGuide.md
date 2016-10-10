@@ -334,6 +334,26 @@ Priority | As a ... | I want to ... | So that I can...
 > 3a1. Taskell shows an error message <br>
   Use case resumes at step 2
 
+#### Use case: Done task
+
+**MSS**
+
+1. User requests to list tasks
+2. Taskell shows a list of uncompleted tasks
+3. User requests to mark a specific task in the list as completed
+4. Taskell adds the task in completed tasks<br>
+
+> Use case ends
+
+**Extensions**
+
+2a. The list is empty
+3a. The given index is invalid
+4a. User tries to mark a completed task as completed
+
+> 3a1. Taskell shows an error message <br>
+  Use case resumes at step 2
+  
 #### Use case: Help task
 
 **MSS**
