@@ -18,7 +18,7 @@ Taskell is a simple software for users to keep track of their daily tasks. This 
 
 This guide describes the design and implementation of Taskell. This will help you understand how Taskell works so that you can join our team in assisting for the development of this software.
 
-## Setting up
+## Setting Up
 
 #### Prerequisites
 
@@ -42,7 +42,7 @@ This guide describes the design and implementation of Taskell. This will help yo
 4. Click `Browse`, then locate the project's directory
 5. Click `Finish`
 
-  > * If you are asked whether to 'keep' or 'overwrite' config files, choose to 'keep'.
+  > * If you are asked whether to 'keep' or 'overwrite' configuration files, choose to 'keep'.
   > * Depending on your connection speed and server load, it can even take up to 30 minutes for the set up to finish
       (This is because Gradle downloads library files from servers during the project set up process)
   > * If Eclipse auto-changed any settings files during the import process, you can discard those changes.
@@ -119,7 +119,7 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 
 The `UI` component,
 * Executes user commands using the `Logic` component.
-* Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
+* Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` changes.
 * Responds to events raised from various parts of the Application and updates the UI accordingly.
 
 ### Logic Component
@@ -132,7 +132,7 @@ The picture above gives an overview of how the `Logic`component is implemented.<
 The `Logic` component,
 * Uses the `Parser` class to parse the user command: results in a `Command` object which is executed by the `LogicManager`.
 * Affects the `Model` (e.g. adding a task) and/or raise events.
-* Executes the necessary command and the result is encapsulated as a  `CommandResult` to be passed back to the `Ui`.
+* Executes the necessary command and the result is encapsulated as a  `CommandResult` to be passed back to the `UI`.
 
 <br><img src="images/DeleteTaskSdForLogic.png" width="800"><br>
 
@@ -285,9 +285,9 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | have flexible command format | I do not have to waste time trying to remember and get the command format right.
 `* * *` | user | specify a folder with cloud syncing service as the storage location | I can easily access my task planner from different computers.
 `* * *` | user | check whether tasks are completed or yet to be done | I can track the tasks completion.
-`* *` | user | set some of my task recursively | I need not have to manually key them everyday,week,month.
 `* *` | user |  delete tasks based on a certain index | I can delete a few tasks in one go instead of deleting one task at a time.
 `* *` | user | hide private contact details | minimize chance of someone else seeing them by accident.
+`*` | user | set some of my task recursively | I need not have to manually key them everyday,week,month.
 `*` | user | be able to block multiple timeslots, and release the timeslots when timing is confirmed|  I can schedule in events which have uncertain timings more efficiently.
 `*` | user with many tasks in Taskell | sort tasks by priority | view the most important tasks.
 `*` | user | edit my notification time period | customise if I wanted to be reminded earlier or later.
