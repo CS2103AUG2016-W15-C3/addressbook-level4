@@ -73,7 +73,7 @@ Prints a list of all the tasks due on the specific date.<br>
 - `list DONE` <br>
 Prints a list of all the completed tasks.<br>
 <br><img src="images/ListToday.png" width="600"></br>
-Picture 2: List of tasks due today printed when “List today” is keyed in.
+Picture 2: List of tasks due today printed when `list today` is keyed in.
    
 #### Finding tasks: `find`
 To view tasks with similar keyword, use the find command.<br>
