@@ -2,30 +2,38 @@
 <taskmanager>
     <tasks>
         <description>Hans Muster</description>
-        <taskDate>Monday, 10 October 2016</taskDate>
+        <taskDate>7-9-1990</taskDate>
     </tasks>
     <tasks>
         <description>Ruth Mueller</description>
+        <taskDate>5-1-2000</taskDate>
     </tasks>
     <tasks>
         <description>Heinz Kurz</description>
+        <taskDate>6-9-2010</taskDate>
     </tasks>
     <tasks>
         <description>Cornelia Meier</description>
+        <taskDate>3-1-2011</taskDate>
     </tasks>
     <tasks>
         <description>Werner Meyer</description>
+        <taskDate>9-5-2012</taskDate>
     </tasks>
     <tasks>
         <description>Lydia Kunz</description>
+        <taskDate>9-8-2015</taskDate>
     </tasks>
     <tasks>
         <description>Anna Best</description>
+        <taskDate>6-1-2020</taskDate>
     </tasks>
     <tasks>
         <description>Stefan Meier</description>
+        <taskDate>1-8-2002</taskDate>
     </tasks>
     <tasks>
         <description>Martin Mueller</description>
+        <taskDate>23-6-1999</taskDate>
     </tasks>
 </taskmanager>
