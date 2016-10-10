@@ -41,19 +41,19 @@ Type help and pressing <kbd>Enter</kbd> to open the help window. If you enter an
 To add a new task to Taskell, use the add command.<br>
 > Take Note! Dates need to refer to the current week dates the task was keyed in. Eg. 
 > "tomorrow" and "thursday" is valid but "next Saturday" is invalid. 
-> Only the words "on" or "by" has to be used to seperate deadline from task description. Thus, > for example, `add buy banana by Friday`, buy banana is the task description and 
+> Only the words <strong>"on"</strong> or <strong>"by"</strong> has to be used to seperate deadline from task description. Thus, > for example, `add` buy banana <strong>by</strong> Friday, buy banana is the task description and 
 > Friday is the deadline. They are separated using the word "by".<br>
 
 Formats: 
-- `add TASK ITEM` <br>
+- `add` TASK ITEM <br>
 This format can be used to add floating tasks without any deadlines.<br>
-> Example: `add read Harry Potter Book` <br>
+> Example: `add` read Harry Potter Book <br>
 - `add` TASK ITEM <strong>by</strong> [DATE] <br>
 - `add` TASK ITEM <strong>by</strong> [TIME] <br>
 These 2 formats can be used to add events held on a certain day or time.<br>
-> Example: `add` buy MA1101R textbook by today <br>
-> Example: `add` do CS2100 assignment by 10th August<br>
-> Example: `add` go shopping by 3pm<br>
+> Example: `add` buy MA1101R textbook <strong>by</strong> today <br>
+> Example: `add` do CS2100 assignment <strong>by</strong> 10th August<br>
+> Example: `add` go shopping <strong>by</strong> 3pm<br>
 - `add `TASK ITEM <strong>by</strong> [DATE][TIME] <br>
 This format can be used to add tasks with a stipulated deadline.<br>
 > Example: `add` do lab homework <strong>by</strong> Friday 7pm <br>
@@ -74,7 +74,7 @@ Prints a list of all the tasks due on the specific date.<br>
 - `list` DONE <br>
 Prints a list of all the completed tasks.<br>
 <br><img src="images/ListToday.png" width="600"></br>
-Picture 2: List of tasks due today printed when `list today` is keyed in.
+Picture 2: List of tasks due today printed when `list` today is keyed in.
    
 #### Finding tasks: `find`
 To view tasks with similar keyword, use the find command.<br>
@@ -83,7 +83,6 @@ Formats: <br>
 Prints a list of activities that match the keywords.<br>
 Example: `find` banana milk essay:<br>
 This returns any task description having keywords banana, milk, essay. <br>
-
 -`find-tag` KEYWORD <br>
 Prints list of activities with the same tag.<br>
  <br><img src="images/findReport.png" width="600"></br>
@@ -98,9 +97,9 @@ Picture 3 and 4: Keying in `find` report displays list of tasks with report as o
     e.g. `chicken` will match `chicken duck`
 
 #### Reverting previous action : `undo`
-If you wish to undo your previous action, <kbd>Enter</kbd> undo.<br>
+If you wish to undo your previous action, <kbd>Enter</kbd> `undo`.<br>
 > Take Note! <br>
-> * You are only allowed to undo the last 1 command.
+> You are only allowed to undo the last 1 command.
 Format: `undo`
 
 #### Deleting a task : `delete`
@@ -122,11 +121,11 @@ Picture 7: `edit` 2 schedule meeting on wednesday: edits the 2nd task in Taskell
 #### Saving the information in Taskell
 
 Specify the path of a new folder to store the data file of Taskell. The user should have permissions to access the folder.<br>
-Format: `save /FOLDERPATH`<br>
-Example: `save f/Dropbox`
+Format: `save` /FOLDERPATH<br>
+Example: `save` f/Dropbox
 
 #### Clearing all entries : `clear`
-To clear all tasks, <kbd>Enter</kbd> clear.<br>
+To clear all tasks, <kbd>Enter</kbd> `clear`.<br>
 Format: `clear`  
 
 #### Exiting the program : `exit`
@@ -148,8 +147,8 @@ Command | Format
 -------- | :-------- 
 Add Floating Task | `add` TASK ITEM 
 Add Event | `add` TASK ITEM <strong>by</strong> [DATE]
-Add Event | `add` TASK ITEM by [TIME]
-Add Event With Deadline | `add` TASK ITEM by [DATE][TIME]
+Add Event | `add` TASK ITEM <strong>by</strong> [TIME]
+Add Event With Deadline | `add` TASK ITEM <strong>by</strong> [DATE][TIME]
 Clear | `clear`
 Delete | `delete` INDEX
 Edit | `edit` INDEX NEWTASK
