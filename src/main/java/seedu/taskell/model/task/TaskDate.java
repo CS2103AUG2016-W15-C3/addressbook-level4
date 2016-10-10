@@ -69,6 +69,7 @@ public class TaskDate {
     public String year;
     public String dayNameInWeek;
     public String taskDateInputByUser;
+    public String taskDateStandardFormat;
     public String taskDateForDisplay;
     
     /**
@@ -102,7 +103,7 @@ public class TaskDate {
             month = st.nextToken();
             year = st.nextToken();
             taskDateForDisplay = string;
-            string = day + "-" + month + "-" + year;
+            string = day.trim() + "-" + month.trim() + "-" + year.trim();
         }
         
         if (!isValidDate(string)) {
@@ -170,18 +171,23 @@ public class TaskDate {
 
     private void getPartOfDate(String day, String month, String year) throws DateTimeException {
         try {
-        LocalDate localDate = LocalDate.of(Integer.valueOf(year), convertMonthIntoInteger(month), Integer.valueOf(day));
-        this.dayNameInWeek = localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
+            LocalDate localDate = LocalDate.of(Integer.valueOf(year), convertMonthIntoInteger(month), Integer.valueOf(day));
+            this.dayNameInWeek = localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
 
-        this.day = day;
-        this.year = year;
+            this.day = day.trim();
+            this.year = year.trim();
 
-        month = localDate.getMonth().getDisplayName(TextStyle.FULL, Locale.US).toLowerCase();
-        this.month = month.substring(0, 1).toUpperCase() + month.substring(1);
-        this.taskDateForDisplay = dayNameInWeek + ", " + day + " " + month + " " + year;
+            month = localDate.getMonth().getDisplayName(TextStyle.FULL, Locale.US).toLowerCase();
+            this.month = month.substring(0, 1).toUpperCase() + month.substring(1).trim();
+            this.taskDateForDisplay = dayNameInWeek + ", " + this.day + " " + this.month + " " + this.year;
+            this.taskDateStandardFormat = convertToStandardFormat();
         } catch (DateTimeException dte) {
             throw dte;
         }
+    }
+    
+    public String convertToStandardFormat() {
+        return day + "-" + convertMonthIntoInteger(month) + "-" + year;
     }
 
     public static boolean isValidDate(String dateToValidate) {
@@ -323,8 +329,8 @@ public class TaskDate {
     }
 
     private static int convertMonthIntoInteger(String month) {
-        if (!month.matches("[\\d]+")) {
-            month.toLowerCase();
+        if (Character.isLetter(month.charAt(0))) {
+            month = month.toLowerCase();
         }
 
         switch (month) {
@@ -419,7 +425,7 @@ public class TaskDate {
 
     @Override
     public String toString() {
-        return taskDateForDisplay;
+        return taskDateStandardFormat;
     }
     
     @Override
