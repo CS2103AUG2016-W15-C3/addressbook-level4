@@ -84,7 +84,9 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+        
+        case DoneCommand.COMMAND_WORD:
+            return prepareDone(arguments);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -265,5 +267,20 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
+    
+    /**
+     * Parses arguments in the context of the Done task command.
+     *
+     * @param args
+     *            full command args string
+     * @return the prepared command
+     */
+    private Command prepareDone(String args) {
+        Optional<Integer> index = parseIndex(args);
+        if (!index.isPresent()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+        }
 
+        return new DoneCommand(index.get());
+    }
 }

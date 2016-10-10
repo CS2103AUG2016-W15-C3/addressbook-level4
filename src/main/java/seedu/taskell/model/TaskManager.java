@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.taskell.model.task.Task;
 import seedu.taskell.model.task.ReadOnlyTask;
 import seedu.taskell.model.task.UniqueTaskList;
+import seedu.taskell.model.task.UniqueDoneList;
 import seedu.taskell.model.tag.Tag;
 import seedu.taskell.model.tag.UniqueTagList;
 
@@ -17,27 +18,29 @@ import java.util.stream.Collectors;
 public class TaskManager implements ReadOnlyTaskManager {
 
     private final UniqueTaskList tasks;
+    private final UniqueDoneList DoneTasks;
     private final UniqueTagList tags;
 
     {
         tasks = new UniqueTaskList();
+        DoneTasks = new UniqueDoneList();
         tags = new UniqueTagList();
     }
 
     public TaskManager() {}
 
     /**
-     * Tasks and Tags are copied into this taskmanager
+     * Tasks Done Tasks and Tags are copied into this taskmanager
      */
     public TaskManager(ReadOnlyTaskManager toBeCopied) {
-        this(toBeCopied.getUniqueTaskList(), toBeCopied.getUniqueTagList());
+        this(toBeCopied.getUniqueTaskList(), toBeCopied.getUniqueTagList(), toBeCopied.getUniqueDoneList());
     }
 
     /**
      * Tasks and Tags are copied into this taskmanager
      */
-    public TaskManager(UniqueTaskList tasks, UniqueTagList tags) {
-        resetData(tasks.getInternalList(), tags.getInternalList());
+    public TaskManager(UniqueTaskList tasks, UniqueTagList uniqueTagList, UniqueDoneList DoneTasks) {
+        resetData(tasks.getInternalList(), uniqueTagList.getInternalList(), DoneTasks.getInternalList());
     }
 
     public static ReadOnlyTaskManager getEmptyTaskManager() {
@@ -53,18 +56,21 @@ public class TaskManager implements ReadOnlyTaskManager {
     public void setTasks(List<Task> tasks) {
         this.tasks.getInternalList().setAll(tasks);
     }
-
+    public void setDoneTasks(List<Task> DoneTasks){
+        this.DoneTasks.getInternalList().setAll(DoneTasks);
+    }
     public void setTags(Collection<Tag> tags) {
         this.tags.getInternalList().setAll(tags);
     }
 
-    public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags) {
+    public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags, Collection<? extends ReadOnlyTask> newDoneTasks) {
+        setDoneTasks(newDoneTasks.stream().map(Task::new).collect(Collectors.toList()));
         setTasks(newTasks.stream().map(Task::new).collect(Collectors.toList()));
         setTags(newTags);
     }
 
     public void resetData(ReadOnlyTaskManager newData) {
-        resetData(newData.getTaskList(), newData.getTagList());
+        resetData(newData.getTaskList(), newData.getTagList(), newData.getDoneList());
     }
 
 //// task-level operations
@@ -80,7 +86,10 @@ public class TaskManager implements ReadOnlyTaskManager {
         syncTagsWithMasterList(p);
         tasks.add(p);
     }
-
+    public void addDoneTask(Task p){
+        syncTagsWithMasterList(p);
+        DoneTasks.add(p);
+    }
     /**
      * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
@@ -111,7 +120,13 @@ public class TaskManager implements ReadOnlyTaskManager {
             throw new UniqueTaskList.TaskNotFoundException();
         }
     }
-
+    public boolean removeDoneTask(ReadOnlyTask key) throws UniqueDoneList.TaskNotFoundException {
+        if (DoneTasks.remove(key)) {
+            return true;
+        } else {
+            throw new UniqueDoneList.TaskNotFoundException();
+        }
+    }
 //// tag-level operations
 
     public void addTag(Tag t) throws UniqueTagList.DuplicateTagException {
@@ -160,4 +175,15 @@ public class TaskManager implements ReadOnlyTaskManager {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(tasks, tags);
     }
+
+    @Override
+    public UniqueDoneList getUniqueDoneList() {
+        return this.DoneTasks;
+    }
+
+    @Override
+    public List<ReadOnlyTask> getDoneList() {
+        return Collections.unmodifiableList(DoneTasks.getInternalList());
+    }
+
 }

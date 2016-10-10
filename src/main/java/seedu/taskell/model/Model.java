@@ -6,7 +6,7 @@ import seedu.taskell.commons.core.UnmodifiableObservableList;
 import seedu.taskell.model.task.Task;
 import seedu.taskell.model.task.ReadOnlyTask;
 import seedu.taskell.model.task.UniqueTaskList;
-
+import seedu.taskell.model.task.UniqueDoneList;
 /**
  * The API of the Model component.
  */
@@ -19,10 +19,10 @@ public interface Model {
 
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
-
+    void deleteDoneTask(ReadOnlyTask target) throws UniqueDoneList.TaskNotFoundException;
     /** Adds the given task */
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
-
+    void addDoneTask(Task task);
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 

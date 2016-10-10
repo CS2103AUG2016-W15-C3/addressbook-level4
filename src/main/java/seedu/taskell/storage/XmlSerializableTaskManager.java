@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import seedu.taskell.commons.exceptions.IllegalValueException;
 import seedu.taskell.model.ReadOnlyTaskManager;
 import seedu.taskell.model.task.ReadOnlyTask;
+import seedu.taskell.model.task.UniqueDoneList;
 import seedu.taskell.model.task.UniqueTaskList;
 import seedu.taskell.model.tag.Tag;
 import seedu.taskell.model.tag.UniqueTagList;
@@ -84,6 +85,32 @@ public class XmlSerializableTaskManager implements ReadOnlyTaskManager {
     @Override
     public List<Tag> getTagList() {
         return Collections.unmodifiableList(tags);
+    }
+
+    @Override
+    public UniqueDoneList getUniqueDoneList() {
+        UniqueDoneList lists = new UniqueDoneList();
+        for (XmlAdaptedTask p : tasks) {
+            try {
+                lists.add(p.toModelType());
+            } catch (IllegalValueException e) {
+                //TODO: better error handling
+            }
+        }
+        return lists;
+    }
+
+    @Override
+    public List<ReadOnlyTask> getDoneList() {
+        return tasks.stream().map(p -> {
+            try {
+                return p.toModelType();
+            } catch (IllegalValueException e) {
+                e.printStackTrace();
+                //TODO: better error handling
+                return null;
+            }
+        }).collect(Collectors.toCollection(ArrayList::new));
     }
 
 }

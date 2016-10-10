@@ -10,7 +10,7 @@ import seedu.taskell.model.task.Task;
 import seedu.taskell.model.task.ReadOnlyTask;
 import seedu.taskell.model.task.UniqueTaskList;
 import seedu.taskell.model.task.UniqueTaskList.TaskNotFoundException;
-
+import seedu.taskell.model.task.UniqueDoneList;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,17 +66,28 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public synchronized void deleteTask(ReadOnlyTask target) throws TaskNotFoundException {
+    public synchronized void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException {
         taskManager.removeTask(target);
         indicateTaskManagerChanged();
     }
-
+    @Override
+    public synchronized void deleteDoneTask(ReadOnlyTask target) throws UniqueDoneList.TaskNotFoundException {
+        taskManager.removeDoneTask(target);
+        indicateTaskManagerChanged();
+    }
     @Override
     public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
         taskManager.addTask(task);
         updateFilteredListToShowAll();
         indicateTaskManagerChanged();
     }
+    @Override
+    public synchronized void addDoneTask(Task task) {
+        taskManager.addDoneTask(task);
+        updateFilteredListToShowAll();
+        indicateTaskManagerChanged();
+    }
+    
 
     //=========== Filtered Task List Accessors ===============================================================
 
@@ -151,5 +162,7 @@ public class ModelManager extends ComponentManager implements Model {
             return "name=" + String.join(", ", nameKeyWords);
         }
     }
+
+    
 
 }
