@@ -425,7 +425,7 @@ public class TaskDate {
 
     @Override
     public String toString() {
-        return taskDateStandardFormat;
+        return taskDateForDisplay;
     }
     
     @Override
