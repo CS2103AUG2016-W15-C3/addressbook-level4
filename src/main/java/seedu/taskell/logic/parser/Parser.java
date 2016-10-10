@@ -40,7 +40,10 @@ public class Parser {
                                                                                          // number
                                                                                          // of
                                                                                          // tags
-
+    
+    private static final Pattern EDIT_ARGS_FORMAT = 
+            Pattern.compile("(?<index>[^/]+)" + "n/(?<description>[^/]+)");
+    
     public Parser() {
     }
 
@@ -84,7 +87,10 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+        
+        case EditCommand.COMMAND_WORD:
+            return prepareEdit(arguments);
+            
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -264,6 +270,18 @@ public class Parser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
+    }
+    private Command prepareEdit(String args){
+        final Matcher matcher = EDIT_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+        
+       
+        final String newInfo = matcher.group("newInfo");
+        final int index = Integer.parseInt(matcher.group("targetIndex"));
+        return new EditCommand(index, newInfo);
+        
     }
 
 }
