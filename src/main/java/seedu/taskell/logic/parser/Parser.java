@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import seedu.taskell.commons.exceptions.IllegalValueException;
 import seedu.taskell.commons.util.StringUtil;
 import seedu.taskell.logic.commands.*;
-import seedu.taskell.model.task.Description;
 import seedu.taskell.model.task.TaskDate;
 
 /**
@@ -26,20 +25,6 @@ public class Parser {
     private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
 
     private static final Pattern KEYWORDS_ARGS_FORMAT = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one
-                                                                                                           // or
-                                                                                                           // more
-                                                                                                           // keywords
-                                                                                                           // separated
-                                                                                                           // by
-                                                                                                           // whitespace
-
-    private static final Pattern TASK_DATA_ARGS_FORMAT = // '/' forward slashes
-                                                         // are reserved for
-                                                         // delimiter prefixes
-            Pattern.compile("(?<description>[^/]+)" + "(?<tagArguments>(?: t/[^/]+)*)"); // variable
-                                                                                         // number
-                                                                                         // of
-                                                                                         // tags
 
     public Parser() {
     }
@@ -141,6 +126,9 @@ public class Parser {
         }
     }
 
+    /**
+     * Get tokens of a given string delimited by whitespaces
+     */
     private ArrayList<String> partitionArg(String args) {
         ArrayList<String> argsArr = new ArrayList<String>();
         StringTokenizer st = new StringTokenizer(args, " ");
@@ -150,6 +138,9 @@ public class Parser {
         return argsArr;
     }
 
+    /**
+     * Get date from an arrayList of tokens and remove it from the list
+     */
     private TaskDate extractDate(ArrayList<String> argsArr) throws IllegalValueException {
         TaskDate taskDate = null;
         for (int i = 0; i < argsArr.size(); i++) {
