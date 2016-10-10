@@ -59,21 +59,28 @@ The use of word <strong>"on"</strong> gives more flexibility for you.<br>
 - `add` TASK ITEM <strong>on</strong> [DATE][TIME] <br>
 > Example: `add` meet teacher <strong>on</strong> 28-09-16 7pm <br>
 
-Supported Date Format |     
+Supported Date Format |   Example  
 -------- | :-------- 
-Add Floating Task | `add` TASK ITEM 
-Add Event | `add` TASK ITEM <strong>by</strong> [DATE]
-Add Event | `add` TASK ITEM <strong>by</strong> [TIME]
-Clear | `clear`
-Delete | `delete` INDEX
-Edit | `edit` INDEX NEWTASK
-Find | `find` KEYWORD [MORE_KEYWORDS]
-Find Tag | `find-tag` KEYWORD
-List | `list`
-List Given Day | `list` [DATE]
-List Tasks Done | `list` [DONE]
-Help | `help`
-Undo | `undo`
+DD-MM-YY |1-1-16 
+DD-MM-YY  | 1-1-2016 
+DD-MM-YY  | 1-Jan-2016
+DD-MM-YY  | 1-January-2016  
+DD-MM-YY  | 1.Jan.2016
+DD-MM-YY  | 1.January.2016  
+MM-YY  | july-16
+MM  | july
+day  | today
+day  | tdy
+day  | tmr
+day  | tomorrow
+day  | thursday
+
+Supported Time Format |   Example  
+-------- | :-------- 
+12hour |1pm
+12hour |12am
+12hour |111.45pm
+
 #### Listing all tasks : `list`
 To view a list of all the tasks, <kbd>Enter</kbd> list.<br>
 <br>
@@ -123,15 +130,22 @@ Picture 5 and 6: Entering `delete` 1 will delete "Arrange meeting with XYZ compa
 Example: `find` violin, then `delete` 1<br>
 This deletes the 1st task in the results of the find command.
 
+#### Marking a task as completed: `done`
+To mark a task as done, use the `done` command. This command removes the task from uncompleted list and adds to completed tasks.<br>
+Format: `done` INDEX<br>
+
+Example: `done` 1<b>
+This adds the 1st task as completed.<br>
+
 #### Editing a task : `edit`
 To edit a task, use the `edit` command. This command edits the task at a specified INDEX. The index refers to the index number shown in the most recent listing.<br>
 Format: `edit INDEX NEWTASK`<br>
  <br> <img src="images/editCmd.png" width="600"> </br>
 Picture 7: `edit` 2 schedule meeting on wednesday: edits the 2nd task in Taskell to "schedule meeting on wednesday."
 
-#### Saving the information in Taskell
+#### Saving the information in cloud syncing folder
 
-Specify the path of a new folder to store the data file of Taskell. The user should have permissions to access the folder.<br>
+Specify the path of a folder to store the data file of Taskell. The user should have permissions to access the folder.<br>
 Format: `save` /FOLDERPATH<br>
 Example: `save` f/Dropbox
 
