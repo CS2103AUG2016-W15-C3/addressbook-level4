@@ -106,7 +106,6 @@ public class TaskListPanelHandle extends GuiHandle {
         if (!task.isPresent()) {
             throw new IllegalStateException("Description not found: " + description);
         }
-
         return navigateToTask(task.get());
     }
 

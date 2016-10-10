@@ -103,7 +103,8 @@ public class TaskDate {
             month = st.nextToken();
             year = st.nextToken();
             taskDateForDisplay = string;
-            string = day.trim() + "-" + month.trim() + "-" + year.trim();
+            string = day.trim() + "-" + convertMonthIntoInteger(month.trim()) + "-" + year.trim();
+            taskDateStandardFormat = string;
         }
         
         if (!isValidDate(string)) {
@@ -113,6 +114,7 @@ public class TaskDate {
         LocalDate today = LocalDate.now();
         
         try {
+            
 
         if (formatOfDate == TODAY) {
             getPartOfDate(today.getDayOfMonth() + "", today.getMonthValue() + "", today.getYear() + "");
@@ -430,13 +432,11 @@ public class TaskDate {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskDate // instanceof handles nulls
-                && this.day.equals(((TaskDate) other).day)
-                && this.month.equals(((TaskDate) other).month)
-                && this.year.equals(((TaskDate) other).year));
+                && this.taskDateStandardFormat.equals(((TaskDate)other).taskDateStandardFormat));
     }
 
     @Override
     public int hashCode() {
-        return (day + month + year + dayNameInWeek).hashCode();
+        return taskDateStandardFormat.hashCode();
     }
 }
