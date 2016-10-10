@@ -2,29 +2,38 @@
 <taskmanager>
     <tasks>
         <description>Hans Muster</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Ruth Mueller</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Heinz Kurz</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Cornelia Meier</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Werner Meyer</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Lydia Kunz</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Anna Best</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Stefan Meier</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
     <tasks>
         <description>Martin Mueller</description>
+        <taskDate>1-11-2011</taskDate>
     </tasks>
 </taskmanager>

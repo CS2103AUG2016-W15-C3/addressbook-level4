@@ -12,14 +12,16 @@ import seedu.taskell.model.tag.UniqueTagList;
 public class Task implements ReadOnlyTask {
 
     private Description description;
+    private TaskDate taskDate;
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Description description, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(description, tags);
+    public Task(Description description, TaskDate taskDate, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(description, taskDate, tags);
         this.description = description;
+        this.taskDate = taskDate;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
     }
 
@@ -27,7 +29,7 @@ public class Task implements ReadOnlyTask {
      * Copy constructor.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getDescription(), source.getTags());
+        this(source.getDescription(), source.getTaskDate(), source.getTags());
     }
 
     @Override
@@ -35,7 +37,10 @@ public class Task implements ReadOnlyTask {
         return description;
     }
 
-    
+    @Override
+    public TaskDate getTaskDate() {
+        return taskDate;
+    }
 
     @Override
     public UniqueTagList getTags() {
