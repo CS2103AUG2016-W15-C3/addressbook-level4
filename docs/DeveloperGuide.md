@@ -347,8 +347,8 @@ Priority | As a ... | I want to ... | So that I can...
 
 **Extensions**
 
-2a. The list is empty
-3a. The given index is invalid
+2a. The list is empty<br>
+3a. The given index is invalid<br>
 4a. User tries to mark a completed task as completed
 
 > 3a1. Taskell shows an error message <br>
