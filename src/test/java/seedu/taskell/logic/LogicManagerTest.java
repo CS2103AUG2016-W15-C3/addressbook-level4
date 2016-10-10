@@ -162,7 +162,7 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add []\\[;]", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid DESCRIPTION no-valid-date", TaskDate.MESSAGE_TASK_DATE_CONSTRAINTS);
+                "add Valid DESCRIPTION by no-valid-date", TaskDate.MESSAGE_TASK_DATE_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Description t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
     }
@@ -379,7 +379,7 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             Description description= new Description("Adam Brown");
-            TaskDate taskDate = new TaskDate("10-oct-2016");
+            TaskDate taskDate = new TaskDate("10-may-2016");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -396,7 +396,7 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new Description("Task " + seed),
-                    new TaskDate(seed + "@taskDate"),
+                    new TaskDate(seed + ""),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -408,7 +408,7 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getDescription().toString());
-            cmd.append(p.getTaskDate());
+            cmd.append(" by ").append(p.getTaskDate());
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
