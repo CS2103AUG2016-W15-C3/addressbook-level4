@@ -137,9 +137,10 @@ Format: `done` INDEX<br>
 Example: `done` 1<br>
 This adds the 1st task as completed.<br>
 
-#### Editing a task : `edit`
+#### Editing a task : 
+`edit`
 To edit a task, use the `edit` command. This command edits the task at a specified INDEX. The index refers to the index number shown in the most recent listing.<br>
-Format: `edit INDEX NEWTASK`<br>
+Format: `edit` INDEX NEWTASK<br>
  <br> <img src="images/editCmd.png" width="600"> </br>
 Picture 7: `edit` 2 schedule meeting on wednesday: edits the 2nd task in Taskell to "schedule meeting on wednesday."
 
@@ -149,11 +150,13 @@ Specify the path of a folder to store the data file of Taskell. The user should 
 Format: `save` /FOLDERPATH<br>
 Example: `save` f/Dropbox
 
-#### Clearing all entries : `clear`
+#### Clearing all entries : 
+`clear`
 To clear all tasks, <kbd>Enter</kbd> `clear`.<br>
 Format: `clear`  
 
-#### Exiting the program : `exit`
+#### Exiting the program : 
+`exit`
 To close Taskell, <kbd>Enter</kbd> exit.<br>
 Format: `exit`  
 
