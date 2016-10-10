@@ -162,7 +162,7 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add []\\[;]", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid DESCRIPTION by no-valid-date", TaskDate.MESSAGE_TASK_DATE_CONSTRAINTS);
+                "add Valid DESCRIPTION by no-valid-date", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
         assertCommandBehavior(
                 "add Valid Description t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
     }
