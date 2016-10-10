@@ -126,7 +126,6 @@ public class Parser {
             }
             
             for (String x : argsArr) {
-                System.out.println("TOKEN:" + x);
                 if (x.startsWith(HASHTAG)) {
                     stringOfTags += " " + x;
                 }else if (!x.equals("by")) {

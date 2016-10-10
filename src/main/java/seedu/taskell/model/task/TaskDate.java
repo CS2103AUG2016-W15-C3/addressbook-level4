@@ -131,7 +131,6 @@ public class TaskDate {
             getPartOfDate(finalDate.getDayOfMonth() + "", finalDate.getMonthValue() + "", finalDate.getYear() + "");
         } else if (formatOfDate == ONLY_CONTAIN_MONTH) {
             int month = convertMonthIntoInteger(string);
-            System.out.println("MONTH:" + month);
             getPartOfDate(FIRST_DAY_OF_THE_MONTH, month+"", getThisYear());
         } else if (formatOfDate == ONLY_CONTAIN_DAY_AND_MONTH) {
             StringTokenizer st = new StringTokenizer(string, " .-");
@@ -245,7 +244,6 @@ public class TaskDate {
         try {
             // if not valid, it will throw ParseException
             Date date = sdf.parse(dateToValidate);
-            System.out.println(date);
         } catch (ParseException e) {
             return false;
         }

@@ -50,7 +50,6 @@ public class TaskTime {
             this.hour = matcherFullArg.group("hour");
             this.minute = matcherFullArg.group("minute");
             this.antePost = matcherFullArg.group("antePost");
-            System.out.println(this.antePost);
         } else if (matcherHourOnly.matches()) {
             this.hour = matcherHourOnly.group("hour");
             this.minute = ZERO_MINUTE;

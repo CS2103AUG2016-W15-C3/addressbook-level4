@@ -36,7 +36,6 @@ public class AddCommand extends Command {
         for (String tagName : tags) {
             tagSet.add(new Tag(tagName));
         }
-        System.out.println("DES: " + description);
         this.toAdd = new Task(
                 new Description(description),
                 taskDate,
