@@ -34,7 +34,7 @@ public interface ReadOnlyTask {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
                 .append(" Date: ")
-                .append(getTaskDate())
+                .append(getTaskDate().taskDateForDisplay)
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
