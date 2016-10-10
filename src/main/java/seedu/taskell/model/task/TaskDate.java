@@ -45,15 +45,17 @@ public class TaskDate {
     public static final int TODAY = 1;
     public static final int TOMORROW = 2;
     public static final int ONLY_CONTAIN_DAY_NAME_IN_WEEK = 3;
-    public static final int ONLY_CONTAIN_MONTH = 4;
-    public static final int ONLY_CONTAIN_DAY_AND_MONTH = 5;
-    public static final int ONLY_CONTAIN_MONTH_AND_YEAR = 6;
-    public static final int FULL_DATE_DISPLAY = 7;
+    public static final int ONLY_CONTAIN_MONTH = 4;             
+    public static final int ONLY_CONTAIN_DAY_AND_MONTH = 5;     
+    public static final int ONLY_CONTAIN_MONTH_AND_YEAR = 6;    
+    public static final int FULL_DATE_DISPLAY = 7;              //NAME_OF_DAY_IN_WEEK, DAY MONTH YEAR
 
     public static final int NUM_DAYS_IN_A_WEEK = 7;
     public static final int NUM_MONTHS_IN_A_YEAR = 12;
 
     public static final String FIRST_DAY_OF_THE_MONTH = "1";
+    
+    public static final String DATE_DELIMITER = " .-/";
     
     public static final int LENGTH_OF_KEYWORD_BY = 2+1;
 
@@ -73,7 +75,8 @@ public class TaskDate {
     public String taskDateForDisplay;
     
     /**
-     * Initialize the different fields
+     * Initialize the different fields given date in the format of 
+     * DAY-MONTH-YEAR, separated by DATE_DELIMITER
      * @throws IllegalValueException 
      */
     public TaskDate(String fullDate) throws IllegalValueException {
@@ -114,44 +117,47 @@ public class TaskDate {
         LocalDate today = LocalDate.now();
         
         try {
-            
-
-        if (formatOfDate == TODAY) {
-            getPartOfDate(today.getDayOfMonth() + "", today.getMonthValue() + "", today.getYear() + "");
-        } else if (formatOfDate == TOMORROW) {
-            LocalDate tomorrow = today.plusDays(1);
-            getPartOfDate(tomorrow.getDayOfMonth() + "", tomorrow.getMonthValue() + "", tomorrow.getYear() + "");
-        } else if (formatOfDate == ONLY_CONTAIN_DAY_NAME_IN_WEEK) {
-            int dateToSet = convertDayOfWeekIntoInteger(string);
-            String todayDayNameInWeek = today.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
-            int todayDayInWeek = convertDayOfWeekIntoInteger(todayDayNameInWeek);
-            int daysToAdd = dateToSet - todayDayInWeek;
-            if (daysToAdd < 0) {
-                daysToAdd += NUM_DAYS_IN_A_WEEK;
+            if (formatOfDate == TODAY) {
+                getPartOfDate(today.getDayOfMonth() + "", today.getMonthValue() + "", today.getYear() + "");
+            } else if (formatOfDate == TOMORROW) {
+                LocalDate tomorrow = today.plusDays(1);
+                getPartOfDate(tomorrow.getDayOfMonth() + "", tomorrow.getMonthValue() + "", tomorrow.getYear() + "");
+            } else if (formatOfDate == ONLY_CONTAIN_DAY_NAME_IN_WEEK) {
+                int dateToSet = convertDayOfWeekIntoInteger(string);
+                String todayDayNameInWeek = today.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
+                int todayDayInWeek = convertDayOfWeekIntoInteger(todayDayNameInWeek);
+                int daysToAdd = dateToSet - todayDayInWeek;
+                if (daysToAdd < 0) {
+                    daysToAdd += NUM_DAYS_IN_A_WEEK;
+                }
+                LocalDate finalDate = today.plusDays(daysToAdd);
+                getPartOfDate(finalDate.getDayOfMonth() + "", finalDate.getMonthValue() + "", finalDate.getYear() + "");
+            } else if (formatOfDate == ONLY_CONTAIN_MONTH) {
+                int month = convertMonthIntoInteger(string);
+                getPartOfDate(FIRST_DAY_OF_THE_MONTH, month+"", getThisYear());
+            } else if (formatOfDate == ONLY_CONTAIN_DAY_AND_MONTH) {
+                StringTokenizer st = new StringTokenizer(string, DATE_DELIMITER);
+                day = st.nextToken();
+                month = convertMonthIntoInteger(st.nextToken()) + "";
+                getPartOfDate(day, month, getThisYear());
+            } else if (formatOfDate == ONLY_CONTAIN_MONTH_AND_YEAR) {
+                StringTokenizer st = new StringTokenizer(string, DATE_DELIMITER);
+                month = convertMonthIntoInteger(st.nextToken()) + "";
+                year = st.nextToken();
+                getPartOfDate(FIRST_DAY_OF_THE_MONTH, month, year);
             }
-            LocalDate finalDate = today.plusDays(daysToAdd);
-            getPartOfDate(finalDate.getDayOfMonth() + "", finalDate.getMonthValue() + "", finalDate.getYear() + "");
-        } else if (formatOfDate == ONLY_CONTAIN_MONTH) {
-            int month = convertMonthIntoInteger(string);
-            getPartOfDate(FIRST_DAY_OF_THE_MONTH, month+"", getThisYear());
-        } else if (formatOfDate == ONLY_CONTAIN_DAY_AND_MONTH) {
-            StringTokenizer st = new StringTokenizer(string, " .-");
-            day = st.nextToken();
-            month = convertMonthIntoInteger(st.nextToken()) + "";
-            getPartOfDate(day, month, getThisYear());
-        } else if (formatOfDate == ONLY_CONTAIN_MONTH_AND_YEAR) {
-            StringTokenizer st = new StringTokenizer(string, " .-");
-            month = convertMonthIntoInteger(st.nextToken()) + "";
-            year = st.nextToken();
-            getPartOfDate(FIRST_DAY_OF_THE_MONTH, month, year);
-        }
         } catch (DateTimeException dte) {
             throw new IllegalValueException(MESSAGE_TASK_DATE_CONSTRAINTS);
         }
     }
 
+    /**
+     * Extract the different fields from date having the format of
+     * DAY-MONTH-YEAR, separated by DATE_DELIMITER
+     * @throws DateTimeException
+     */
     public void getPartOfDate(String dateToConvert) throws DateTimeException {
-        StringTokenizer st = new StringTokenizer(dateToConvert, " .-");
+        StringTokenizer st = new StringTokenizer(dateToConvert, DATE_DELIMITER);
         String[] tokenArr = new String[3];
         int i = 0;
         while (st.hasMoreTokens()) {
@@ -170,7 +176,15 @@ public class TaskDate {
         }
     }
 
+    /**
+     * Extract the different fields of a given valid date
+     * @throws DateTimeException
+     */
     private void getPartOfDate(String day, String month, String year) throws DateTimeException {
+        assert(day!=null);
+        assert(month!=null);
+        assert(year!=null);
+        
         try {
             LocalDate localDate = LocalDate.of(Integer.valueOf(year), convertMonthIntoInteger(month), Integer.valueOf(day));
             this.dayNameInWeek = localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.US);
@@ -187,10 +201,17 @@ public class TaskDate {
         }
     }
     
+    /**
+     * Convert this TaskDate to te format of
+     * DAY_MONTH-YEAR
+     */
     public String convertToStandardFormat() {
         return day + "-" + convertMonthIntoInteger(month) + "-" + year;
     }
 
+    /**
+     * Returns true if a given string is a valid task date.
+     */
     public static boolean isValidDate(String dateToValidate) {
         if (dateToValidate == null) {
             return false;
@@ -210,7 +231,8 @@ public class TaskDate {
 
     public static boolean isValidMonthAndYear(String dateToValidate) {
         if (isValidFormat(dateToValidate, "MMM y") || isValidFormat(dateToValidate, "MMM-y")
-                || isValidFormat(dateToValidate, "MMM.y")) {
+                || isValidFormat(dateToValidate, "MMM.y")
+                || isValidFormat(dateToValidate, "MMM/y")) {
             return true;
         }
         return false;
@@ -218,7 +240,8 @@ public class TaskDate {
 
     public static boolean isValidDayAndMonth(String dateToValidate) {
         if (isValidFormat(dateToValidate, "d MMM") || isValidFormat(dateToValidate, "d-MMM")
-                || isValidFormat(dateToValidate, "d.MMM")) {
+                || isValidFormat(dateToValidate, "d.MMM")
+                || isValidFormat(dateToValidate, "d/MMM")) {
             return true;
         }
         return false;
@@ -229,12 +252,20 @@ public class TaskDate {
                 || isValidFormat(dateToValidate, "d-M-y") || isValidFormat(dateToValidate, "d-MMM-y")
                 || isValidFormat(dateToValidate, "d.M.y") || isValidFormat(dateToValidate, "d.MMM.y")
                 || isValidFormat(dateToValidate, "d.M-y") || isValidFormat(dateToValidate, "d.MMM-y")
-                || isValidFormat(dateToValidate, "d-M.y") || isValidFormat(dateToValidate, "d-MMM.y")) {
+                || isValidFormat(dateToValidate, "d-M.y") || isValidFormat(dateToValidate, "d-MMM.y")
+                || isValidFormat(dateToValidate, "d/M/y") || isValidFormat(dateToValidate, "d/MMM/y")
+                || isValidFormat(dateToValidate, "d-M/y") || isValidFormat(dateToValidate, "d-MMM/y")
+                || isValidFormat(dateToValidate, "d/M-y") || isValidFormat(dateToValidate, "d/MMM-y")
+                || isValidFormat(dateToValidate, "d.M/y") || isValidFormat(dateToValidate, "d.MMM/y")
+                || isValidFormat(dateToValidate, "d/M.y") || isValidFormat(dateToValidate, "d/MMM.y")) {
             return true;
         }
         return false;
     }
 
+    /**
+     * Returns true if a given string has a valid format supported by SimpleDateFormat.
+     */
     public static boolean isValidFormat(String dateToValidate, String acceptedFormat) {
         if (dateToValidate == null) {
             return false;
@@ -254,7 +285,9 @@ public class TaskDate {
     }
 
     public static boolean isValidToday(String dateToValidate) {
+        assert (dateToValidate != null);
         dateToValidate.toLowerCase();
+        
         switch (dateToValidate) {
         case "today":
             // Fallthrough
@@ -266,7 +299,9 @@ public class TaskDate {
     }
 
     public static boolean isValidTomorrow(String dateToValidate) {
+        assert (dateToValidate != null);
         dateToValidate.toLowerCase();
+        
         switch (dateToValidate) {
         case "tomorrow":
             // Fallthrough
@@ -285,7 +320,11 @@ public class TaskDate {
         }
     }
 
+    /**
+     * Returns an integer representing the day in a week
+     */
     private static int convertDayOfWeekIntoInteger(String day) {
+        assert (day != null);
         day = day.toLowerCase();
 
         switch (day) {
@@ -328,7 +367,11 @@ public class TaskDate {
         }
     }
 
+    /**
+     * Returns an integer representing the month of a year.
+     */
     private static int convertMonthIntoInteger(String month) {
+        assert (month!= null);
         if (Character.isLetter(month.charAt(0))) {
             month = month.toLowerCase();
         }
@@ -411,21 +454,36 @@ public class TaskDate {
         }
     }
 
+    /**
+     * Get today's date in the format of
+     * NAME_OF_DAY_IN_WEEK, DAY MONTH YEAR
+     */
     public static String getTodayDate() {
         return LocalDate.now().format(dtf);
     }
 
+    /**
+     * Get tomorrow's date in the format of
+     * NAME_OF_DAY_IN_WEEK, DAY MONTH YEAR
+     */
     public static String getTomorrowDate() {
         return LocalDate.now().plusDays(1).format(dtf);
     }
 
+    /**
+     * Returns a string representing the integer value of this year
+     */
     public static String getThisYear() {
         return LocalDate.now().getYear() + "";
     }
 
+    /**
+     * Returns a string with the format of
+     * NAME_OF_DAY_IN_WEEK, DAY MONTH YEAR
+     */
     @Override
     public String toString() {
-        return taskDateStandardFormat;
+        return taskDateForDisplay;
     }
     
     @Override

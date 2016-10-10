@@ -17,11 +17,11 @@ public class TestTask implements ReadOnlyTask {
     }
 
     public void setDescription(Description description) {
-        this.description= description;
+        this.description = description;
     }
 
     public void setTaskDate(TaskDate taskDate) {
-        this.taskDate= taskDate;
+        this.taskDate = taskDate;
     }
 
     @Override
@@ -46,8 +46,8 @@ public class TestTask implements ReadOnlyTask {
 
     public String getAddCommand() {
         StringBuilder sb = new StringBuilder();
-        sb.append("add " + this.getDescription().description+ " ");
-        sb.append("by " + this.getTaskDate().taskDateInputByUser+ " ");
+        sb.append("add " + this.getDescription().description+ " "
+                    + "by " + this.getTaskDate().taskDateStandardFormat + " ");
         this.getTags().getInternalList().stream().forEach(s -> sb.append("t/" + s.tagName + " "));
         return sb.toString();
     }

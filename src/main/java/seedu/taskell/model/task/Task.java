@@ -2,7 +2,6 @@ package seedu.taskell.model.task;
 
 import java.util.Objects;
 
-import seedu.taskell.model.task.TaskDate;
 import seedu.taskell.commons.util.CollectionUtil;
 import seedu.taskell.model.tag.UniqueTagList;
 
@@ -65,7 +64,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, taskDate, tags);
+        return Objects.hash(description, tags);
     }
 
     @Override

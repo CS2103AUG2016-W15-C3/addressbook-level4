@@ -23,7 +23,6 @@ public interface ReadOnlyTask {
     default boolean isSameStateAs(ReadOnlyTask other) {
         return other == this // short circuit if same object
                 || (other != null // this is first to avoid NPE below
-                && other.getTaskDate().equals(this.getTaskDate())
                 && other.getDescription().equals(this.getDescription())); // state checks here onwards
     }
 
