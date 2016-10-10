@@ -39,10 +39,6 @@ Type help and pressing <kbd>Enter</kbd> to open the help window. If you enter an
  
 #### Adding a task: `add`
 To add a new task to Taskell, use the add command.<br>
-> Take Note! Dates need to refer to the current week dates the task was keyed in. Eg. 
-> "tomorrow" and "thursday" is valid but "next Saturday" is invalid. 
-> Only the words <strong>"on"</strong> or <strong>"by"</strong> has to be used to seperate deadline from task description. Thus, > for example, `add` buy banana <strong>by</strong> Friday, buy banana is the task description and 
-> Friday is the deadline. They are separated using the word "by".<br>
 
 Formats: 
 - `add` TASK ITEM <br>
@@ -52,17 +48,32 @@ This format can be used to add floating tasks without any deadlines.<br>
 - `add` TASK ITEM <strong>by</strong> [TIME] <br>
 These 2 formats can be used to add events held on a certain day or time.<br>
 > Example: `add` buy MA1101R textbook <strong>by</strong> today <br>
-> Example: `add` do CS2100 assignment <strong>by</strong> 10th August<br>
+> Example: `add` do CS2100 assignment <strong>by</strong> 10th-August<br>
 > Example: `add` go shopping <strong>by</strong> 3pm<br>
 - `add `TASK ITEM <strong>by</strong> [DATE][TIME] <br>
 This format can be used to add tasks with a stipulated deadline.<br>
-> Example: `add` do lab homework <strong>by</strong> Friday 7pm <br>
+> Example: `add` do lab homework <strong>by</strong> Friday.7pm <br>
 -  `add` TASK ITEM <strong>on</strong> [DATE] <br>
-The use of word “on” gives more flexibility for you.<br>
+The use of word <strong>"on"</strong> gives more flexibility for you.<br>
 > Example: `add` schedule meeting <strong>on</strong> Thursday <br>
 - `add` TASK ITEM <strong>on</strong> [DATE][TIME] <br>
-> Example: `add` meet teacher <strong>on</strong> Friday 7pm <br>
+> Example: `add` meet teacher <strong>on</strong> 28-09-16 7pm <br>
 
+Supported Date Format |     
+-------- | :-------- 
+Add Floating Task | `add` TASK ITEM 
+Add Event | `add` TASK ITEM <strong>by</strong> [DATE]
+Add Event | `add` TASK ITEM <strong>by</strong> [TIME]
+Clear | `clear`
+Delete | `delete` INDEX
+Edit | `edit` INDEX NEWTASK
+Find | `find` KEYWORD [MORE_KEYWORDS]
+Find Tag | `find-tag` KEYWORD
+List | `list`
+List Given Day | `list` [DATE]
+List Tasks Done | `list` [DONE]
+Help | `help`
+Undo | `undo`
 #### Listing all tasks : `list`
 To view a list of all the tasks, <kbd>Enter</kbd> list.<br>
 <br>
