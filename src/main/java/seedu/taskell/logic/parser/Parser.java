@@ -110,12 +110,12 @@ public class Parser {
             if (idx == -1) {
                 String today = TaskDate.getTodayDate();
                 taskDate = new TaskDate(today, TaskDate.FULL_DATE_DISPLAY);
-            } else if (argsOriginal.indexOf(HASHTAG) >= 0) {
+            } else if (argsOriginal.indexOf(HASHTAG) >= 0) {    //if there is a by keyword and a tag
                 argsNew = argsOriginal.substring(idx + TaskDate.LENGTH_OF_KEYWORD_BY, argsOriginal.indexOf(HASHTAG));
                 
                 taskDate = extractDate(argsArr);
 
-            } else {
+            } else {    //if no tag
                 description = argsOriginal.substring(0, idx);
                 argsNew = argsOriginal.substring(idx + TaskDate.LENGTH_OF_KEYWORD_BY);
 
@@ -126,7 +126,7 @@ public class Parser {
             
             for (String x : argsArr) {
                 System.out.println("TOKEN:" + x);
-                if (!x.contains(HASHTAG)) {
+                if (!x.contains(HASHTAG) && !x.equals("by")) {
                     description += " " + x;
                 }
             }
