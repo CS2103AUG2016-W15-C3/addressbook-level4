@@ -14,7 +14,7 @@ public class TypicalTestTasks {
     public TypicalTestTasks() {
         try {
             archivePastEmails =  new TaskBuilder().withDescription("Archive past emails")
-                    .withTaskDate("1-1-201")
+                    .withTaskDate("1-1-2017")
                     .withTags("personal").build();
             borrowBooks = new TaskBuilder().withDescription("Borrow books")
                     .withTaskDate("2-2-2017")
