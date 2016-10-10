@@ -134,7 +134,7 @@ This deletes the 1st task in the results of the find command.
 To mark a task as done, use the `done` command. This command removes the task from uncompleted list and adds to completed tasks.<br>
 Format: `done` INDEX<br>
 
-Example: `done` 1<b>
+Example: `done` 1<br>
 This adds the 1st task as completed.<br>
 
 #### Editing a task : `edit`
