@@ -100,6 +100,7 @@ public class Parser {
      */
     private Command prepareAdd(String argsOriginal) {
         String HASHTAG = "t/";
+        String stringOfTags = "";
         String description = "";
         String argsNew;
         ArrayList<String> argsArr = partitionArg(argsOriginal);
@@ -126,14 +127,16 @@ public class Parser {
             
             for (String x : argsArr) {
                 System.out.println("TOKEN:" + x);
-                if (!x.contains(HASHTAG) && !x.equals("by")) {
+                if (x.startsWith(HASHTAG)) {
+                    stringOfTags += " " + x;
+                }else if (!x.equals("by")) {
                     description += " " + x;
                 }
             }
             
             description = description.replaceAll("\\s+"," ").trim();
             
-            return new AddCommand(description, taskDate, getTagsFromArgs(" t/work"));
+            return new AddCommand(description, taskDate, getTagsFromArgs(stringOfTags));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
         }
