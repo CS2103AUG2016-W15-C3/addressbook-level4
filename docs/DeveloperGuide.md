@@ -14,9 +14,7 @@
 
 ##Introduction
 
-Taskell is a simple software for users to keep track of their daily tasks. This software thus would help users to manage their busy schedule. 
-
-This guide describes the design and implementation of Taskell. This will help you understand how Taskell works so that you can join our team in assisting for the development of this software.
+Taskell is a simple software for users to keep track of their daily tasks and manage their busy schedule. This guide will help you understand the design and implementation of Taskell. 
 
 ## Setting Up
 
@@ -270,33 +268,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 Priority | As a ... | I want to ... | So that I can...
 -------- | :-------- | :--------- | :-----------
-`* * *` | new user | see usage instructions | refer to instructions when I forget how to use the Application.
-`* * *` | user |  add a task and set time and/or deadlines | take note of all my tasks.
+`* * *` | new user | see user guide | refer to the different commands when I forget how to use the application.
+`* * *` | user |  add a task | take note of all my tasks.
 `* * *` | user | delete a task | remove task that I no longer need.
 `* * *` | user | find a task by its description | locate details of tasks without having to go through the entire list.
-`* * *` | user | categorize my tasks | group and view tasks of similar type or tasks of same project.
-`* * *` | user | view all the tasks, sorted by day, week, month | plan my schedule.
-`* * *` | user | add task which has no time limit | can do it without specific times.
+`* * *` | user | categorize my tasks | group and view tasks of similar type.
+`* * *` | user | view all the tasks, sorted by day, month | plan my schedule.
 `* * *` | user | edit task | make changes to the task created.
-`* * *` | user | have a start and end time for a task | save the duration of the task.
-`* * *` | user | set deadlines for a task | know when the task is due.
-`* * *` | user | undo the last previous task I wrote | I can recover from accidents.
-`* * *` | user | mark a task as done | I can focus on uncompleted tasks.
-`* * *` | user | have flexible command format | I do not have to waste time trying to remember and get the command format right.
-`* * *` | user | specify a folder with cloud syncing service as the storage location | I can easily access my task planner from different computers.
-`* * *` | user | check whether tasks are completed or yet to be done | I can track the tasks completion.
-`* *` | user |  delete tasks based on a certain index | I can delete a few tasks in one go instead of deleting one task at a time.
-`* *` | user | hide private contact details | minimize chance of someone else seeing them by accident.
-`*` | user | set some of my task recursively | I need not have to manually key them everyday,week,month.
-`*` | user | be able to block multiple timeslots, and release the timeslots when timing is confirmed|  I can schedule in events which have uncertain timings more efficiently.
-`*` | user with many tasks in Taskell | sort tasks by priority | view the most important tasks.
+`* * *` | user | have a start and end time for an event | take note of the duration of the event.
+`* * *` | user | set deadlines for a task | remember when the task is due.
+`* * *` | user | undo my previous action | correct any mistakes made.
+`* * *` | user | mark a task as done | focus on the uncompleted tasks.
+`* * *` | user | have flexible command format |have various options to execute a command.
+`* * *` | user | specify a folder with cloud syncing service as the storage location | I can easily access my task manager from different computers.
+`* * *` | user | I want to see a list of completed task | view all the tasks I had done.
+`* *` | user |  delete tasks based on a certain index | delete a few tasks instead of one.
+`*` | user | set some of my task recursively | schedule them on a daily/weekly/monthly basis.
+`*` | user | be able to block multiple timeslots, and release the timeslots when timing is confirmed|  schedule in events which have uncertain timings more efficiently.
+`*` | user | sort tasks by priority | view the most important tasks.
 `*` | user | edit my notification time period | customise if I wanted to be reminded earlier or later.
-`*` | user |  use the history command | I do not need to retype it and use it faster.
-`*` | user |  view the task in either calendar form or list form |  I can see the task more directly.
+`*` | user |  use the history command | saves time typing repeated commands.
+`*` | user |  view the task in either calendar form or list form |  Switch between the two display format.
 
 ## Appendix B : Use Cases
-
-(For all use cases below, the **System** is the `TaskManager` and the **Actor** is the `user`, unless specified otherwise)
 
 #### Use case: Add task
 
@@ -304,8 +298,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 1. User requests to add tasks either with or without deadline
 2. Taskell adds the task<br>
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -322,8 +315,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. Taskell shows a list of uncompleted tasks
 3. User requests to delete a specific task in the list
 4. Taskell deletes the task <br>
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -342,8 +334,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. Taskell shows a list of uncompleted tasks
 3. User requests to mark a specific task in the list as completed
 4. Taskell adds the task in completed tasks<br>
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -361,8 +352,7 @@ Priority | As a ... | I want to ... | So that I can...
 1. User requests to view the different command
 2. User enters "help"
 3. User displays a summary of all the different command.
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -378,8 +368,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. Taskell shows a list of uncompleted tasks
 3. User requests to find tasks with specific keywords
 4. Taskell displays the relevant task <br>
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -397,9 +386,8 @@ Priority | As a ... | I want to ... | So that I can...
 1. User requests to list tasks
 2. Taskell shows a list of tasks
 3. User requests to edit the task in the list
-4. AddressBook edits the person's task, including its' deadline <br>
-
-> Use case ends
+4. Taskell edits the user's task, including its' deadline <br>
+Use case ends
 
 **Extensions**
 
@@ -419,8 +407,7 @@ Priority | As a ... | I want to ... | So that I can...
 2. Taskell executed it
 3. User requests to undo the wrong command
 4. Taskell undo the previous command <br>
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -434,8 +421,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 1. User requests to list tasks
 2. Taskell shows a list of tasks
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -450,8 +436,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 1. User requests to save all tasks
 2. Taskell saves all tasks in the requested folder
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -465,8 +450,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 1. User requests to clear all tasks
 2. Taskell deletes all tasks
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
@@ -480,8 +464,7 @@ Priority | As a ... | I want to ... | So that I can...
 
 1. User requests to exit Taskell
 2. Taskell saves all the data and stops
-
-> Use case ends
+Use case ends
 
 **Extensions**
 
