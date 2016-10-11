@@ -281,14 +281,14 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | mark a task as done | focus on the uncompleted tasks.
 `* * *` | user | have flexible command format |have various options to execute a command.
 `* * *` | user | specify a folder with cloud syncing service as the storage location | I can easily access my task manager from different computers.
-`* * *` | user | I want to see a list of completed task | view all the tasks I had done.
+`* * *` | user | I want to see a list of completed tasks | view all the tasks I had done.
 `* *` | user |  delete tasks based on a certain index | delete a few tasks instead of one.
 `*` | user | set some of my task recursively | schedule them on a daily/weekly/monthly basis.
 `*` | user | be able to block multiple timeslots, and release the timeslots when timing is confirmed|  schedule in events which have uncertain timings more efficiently.
 `*` | user | sort tasks by priority | view the most important tasks.
 `*` | user | edit my notification time period | customise if I wanted to be reminded earlier or later.
 `*` | user |  use the history command | saves time typing repeated commands.
-`*` | user |  view the task in either calendar form or list form |  Switch between the two display format.
+`*` | user |  view the task in either calendar form or list form |  switch between the two display format.
 
 ## Appendix B : Use Cases
 
@@ -304,7 +304,7 @@ Use case ends
 
 2a. The user did not follow the given format to add a task or deadline
 
-> 2a1. Taskell shows the help message <br>
+> 2a1. Taskell shows the help website<br>
   Use case resumes at step 1
 
 #### Use case: Delete task
