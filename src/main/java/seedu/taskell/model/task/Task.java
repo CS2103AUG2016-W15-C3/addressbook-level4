@@ -1,5 +1,6 @@
 package seedu.taskell.model.task;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.taskell.commons.util.CollectionUtil;
@@ -10,6 +11,9 @@ import seedu.taskell.model.tag.UniqueTagList;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Task implements ReadOnlyTask {
+    
+    public static final String DATE_TIME_DELIMITER = "by";
+    public static final String DEADlINE_CONSTRAINTS = "There should be only a valid date after the keyword 'by'";
 
     private Description description;
     private TaskDate taskDate;
@@ -70,6 +74,30 @@ public class Task implements ReadOnlyTask {
     @Override
     public String toString() {
         return getAsText();
+    }
+    
+    /**
+     * Returns true when tokens after keyword is not a valid date or tag
+     * @param args A list of tokenized arguments
+     */
+    public static boolean isValidTask(ArrayList<String> args) {
+        try {
+            for (int i=0; i<args.size(); i++) {
+                if (args.contains(Task.DATE_TIME_DELIMITER)) {
+                    for (int j=args.indexOf(Task.DATE_TIME_DELIMITER)+1; j<args.size(); j++) {
+                        if (args.get(j) == null) {
+                            return false;
+                        } else if (!TaskDate.isValidDate(args.get(j)) && !args.get(j).contains("t/")) {
+                            return false;
+                        }
+                    }
+                } 
+            }
+        } catch (RuntimeException rte) {
+            return false;
+        }
+        
+        return true;
     }
 
 }
