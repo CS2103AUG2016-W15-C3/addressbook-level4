@@ -63,7 +63,7 @@ public class TaskDate {
     SimpleDateFormat sdf = new SimpleDateFormat("d M y");
     
     public static final String MESSAGE_TASK_DATE_CONSTRAINTS =
-            "Task dates should be separated by '-' or '.'"
+            "Task dates should be separated by '-' or '.' or '/'"
             + "\nSpelling of month should be in full or 3-letters";
 
     public String day;
