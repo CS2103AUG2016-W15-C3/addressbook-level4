@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.taskell.commons.exceptions.IllegalValueException;
 import seedu.taskell.commons.util.StringUtil;
 import seedu.taskell.logic.commands.*;
+import seedu.taskell.model.task.Task;
 import seedu.taskell.model.task.TaskDate;
 
 /**
@@ -32,8 +33,7 @@ public class Parser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput
-     *            full user input string
+     * @param userInput full user input string
      * @return the command based on the user input
      */
     public Command parseCommand(String userInput) {
@@ -78,48 +78,59 @@ public class Parser {
     /**
      * Parses arguments in the context of the add task command.
      *
-     * @param args
-     *            full command args string
+     * @param args full command args string
      * @return the prepared command
      * @throws IllegalValueException
      */
     private Command prepareAdd(String argsOriginal) {
+        if (argsOriginal == null) {
+            return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
         String HASHTAG = "t/";
+        String DATETIME_DELIMITER_BY = "by";
         String stringOfTags = "";
         String description = "";
         String argsNew;
         ArrayList<String> argsArr = partitionArg(argsOriginal);
-        int idx = argsOriginal.indexOf("by");
         TaskDate taskDate = null;
 
         try {
-            if (idx == -1) {
-                String today = TaskDate.getTodayDate();
-                taskDate = new TaskDate(today, TaskDate.FULL_DATE_DISPLAY);
-            } else if (argsOriginal.indexOf(HASHTAG) >= 0) {    //if there is a by keyword and a tag
-                argsNew = argsOriginal.substring(idx + TaskDate.LENGTH_OF_KEYWORD_BY, argsOriginal.indexOf(HASHTAG));
-                
-                taskDate = extractDate(argsArr);
+            if (Task.isValidTask(argsArr)) {
+                if (argsArr.contains(Task.DATE_TIME_DELIMITER)) {
+                    int idxOfBy = argsArr.indexOf(Task.DATE_TIME_DELIMITER);
 
-            } else {    //if no tag
-                description = argsOriginal.substring(0, idx);
-                argsNew = argsOriginal.substring(idx + TaskDate.LENGTH_OF_KEYWORD_BY);
+                    for (int i = argsArr.indexOf(Task.DATE_TIME_DELIMITER) + 1; i < argsArr.size(); i++) {
+                        if (TaskDate.isValidDate(argsArr.get(i))) {
+                            taskDate = extractDate(argsArr, idxOfBy + 1);
+                            break;
+                        }
+                    }
 
-                argsArr = partitionArg(argsNew);
-                taskDate = extractDate(argsArr);
-
+                } else {
+                    String today = TaskDate.getTodayDate();
+                    taskDate = new TaskDate(today, TaskDate.FULL_DATE_DISPLAY);
+                }
+            } else {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
             }
-            
-            for (String x : argsArr) {
-                if (x.startsWith(HASHTAG)) {
-                    stringOfTags += " " + x;
-                }else if (!x.equals("by")) {
-                    description += " " + x;
+
+            for (String token : argsArr) {
+                if (TaskDate.isValidDate(token)) {
+                    return new IncorrectCommand(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, Task.DEADlINE_CONSTRAINTS));
+                } else if (token.startsWith(HASHTAG)) {
+                    stringOfTags += " " + token;
+                } else if (!token.equals(DATETIME_DELIMITER_BY)) {
+                    description += " " + token;
                 }
             }
-            
-            description = description.replaceAll("\\s+"," ").trim();
-            
+
+            if (description.isEmpty()) {
+                return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
+            description = description.replaceAll("\\s+", " ").trim();
+
             return new AddCommand(description, taskDate.taskDateStandardFormat, getTagsFromArgs(stringOfTags));
         } catch (IllegalValueException ive) {
             return new IncorrectCommand(ive.getMessage());
@@ -141,34 +152,33 @@ public class Parser {
     /**
      * Get date from an arrayList of tokens and remove it from the list
      */
-    private TaskDate extractDate(ArrayList<String> argsArr) throws IllegalValueException {
+    private TaskDate extractDate(ArrayList<String> argsArr, int i) throws IllegalValueException {
         TaskDate taskDate = null;
-        for (int i = 0; i < argsArr.size(); i++) {
-            String token = argsArr.get(i).trim();
+        String token = argsArr.get(i).trim();
 
-            if (TaskDate.isValidFullDate(token)) {
-                taskDate = new TaskDate(token);
-                argsArr.remove(i);
-            } else if (TaskDate.isValidDayAndMonth(token)) {
-                taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_DAY_AND_MONTH);
-                argsArr.remove(i);
-            } else if (TaskDate.isValidMonthAndYear(token)) {
-                taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_MONTH_AND_YEAR);
-                argsArr.remove(i);
-            } else if (TaskDate.isValidMonth(token)) {
-                taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_MONTH);
-                argsArr.remove(i);
-            } else if (TaskDate.isValidDayOfWeek(token)) {
-                taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_DAY_NAME_IN_WEEK);
-                argsArr.remove(i);
-            } else if (TaskDate.isValidTomorrow(token)) {
-                taskDate = new TaskDate(token, TaskDate.TOMORROW);
-                argsArr.remove(i);
-            } else if (TaskDate.isValidToday(token)) {
-                taskDate = new TaskDate(token, TaskDate.TODAY);
-                argsArr.remove(i);
-            }
+        if (TaskDate.isValidFullDate(token)) {
+            taskDate = new TaskDate(token);
+            argsArr.remove(i);
+        } else if (TaskDate.isValidDayAndMonth(token)) {
+            taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_DAY_AND_MONTH);
+            argsArr.remove(i);
+        } else if (TaskDate.isValidMonthAndYear(token)) {
+            taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_MONTH_AND_YEAR);
+            argsArr.remove(i);
+        } else if (TaskDate.isValidMonth(token)) {
+            taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_MONTH);
+            argsArr.remove(i);
+        } else if (TaskDate.isValidDayOfWeek(token)) {
+            taskDate = new TaskDate(token, TaskDate.ONLY_CONTAIN_DAY_NAME_IN_WEEK);
+            argsArr.remove(i);
+        } else if (TaskDate.isValidTomorrow(token)) {
+            taskDate = new TaskDate(token, TaskDate.TOMORROW);
+            argsArr.remove(i);
+        } else if (TaskDate.isValidToday(token)) {
+            taskDate = new TaskDate(token, TaskDate.TODAY);
+            argsArr.remove(i);
         }
+
         return taskDate;
     }
 
