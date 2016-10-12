@@ -18,7 +18,7 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String description;
     
-    @XmlElement(required = true)
+    @XmlElement
     private String taskDate;
 
     @XmlElement
