@@ -42,7 +42,7 @@ public class Parser {
                                                                                          // tags
     
     private static final Pattern EDIT_ARGS_FORMAT = 
-            Pattern.compile("(?<index>[^/]+)" + "n/(?<description>[^/]+)");
+            Pattern.compile("(?<index>[^/]+)" + "(?<description>[^/]+)");
     
     public Parser() {
     }
@@ -271,6 +271,7 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
+    
     private Command prepareEdit(String args){
         final Matcher matcher = EDIT_ARGS_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
@@ -280,6 +281,7 @@ public class Parser {
        
         final String newInfo = matcher.group("newInfo");
         final int index = Integer.parseInt(matcher.group("targetIndex"));
+        
         return new EditCommand(index, newInfo);
         
     }
