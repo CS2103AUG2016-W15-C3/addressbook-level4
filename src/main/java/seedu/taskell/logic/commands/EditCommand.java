@@ -1,0 +1,68 @@
+package seedu.taskell.logic.commands;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.taskell.commons.core.Messages;
+import seedu.taskell.commons.core.UnmodifiableObservableList;
+import seedu.taskell.commons.exceptions.IllegalValueException;
+import seedu.taskell.model.tag.Tag;
+import seedu.taskell.model.tag.UniqueTagList;
+import seedu.taskell.model.task.Description;
+import seedu.taskell.model.task.ReadOnlyTask;
+import seedu.taskell.model.task.Task;
+import seedu.taskell.model.task.UniqueTaskList;
+import seedu.taskell.model.task.UniqueTaskList.TaskNotFoundException;
+
+/**
+ * Edits a task identified using it's last displayed index from the task manager.
+ */
+public class EditCommand extends Command {
+    public static final String COMMAND_WORD = "edit";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the task identified by the index number used in the last task listing.\n"
+            + "Parameters: INDEX (must be a positive integer) NEW_DESCRIPTION [t/TAG]\n"
+            + "Example: " + COMMAND_WORD + " 1 buy cake t/chicken";
+
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Old Task: %1$s \nNewTask: %2$s";
+
+    public final int targetIndex;
+    private final Task newTask;
+
+    public EditCommand(int targetIndex, String description, Set<String> tags) throws IllegalValueException{
+        this.targetIndex = targetIndex;
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(new Tag(tagName));
+        }
+        this.newTask = new Task(
+                new Description(description),
+                new UniqueTagList(tagSet)
+        );
+    }
+    
+    @Override
+    public CommandResult execute() {
+
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() < targetIndex) {
+            indicateAttemptToExecuteIncorrectCommand();
+            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        ReadOnlyTask taskToDelete = lastShownList.get(targetIndex - 1);
+
+        try {
+            model.deleteTask(taskToDelete);
+            model.addTask(newTask);
+        } catch (TaskNotFoundException pnfe) {
+            assert false : "The target task cannot be missing";
+        } catch (UniqueTaskList.DuplicateTaskException e) {
+            return new CommandResult(AddCommand.MESSAGE_DUPLICATE_TASK);
+        }
+
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToDelete, newTask));
+    }
+}

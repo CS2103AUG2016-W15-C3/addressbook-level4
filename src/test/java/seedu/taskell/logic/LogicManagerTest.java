@@ -304,7 +304,56 @@ public class LogicManagerTest {
                 expectedAB,
                 expectedAB.getTaskList());
     }
+    
+    @Test
+    public void execute_editInvalidArgsFormat_errorMessageShown() throws Exception {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+        assertCommandBehavior("edit" , expectedMessage); //index missing
+        assertCommandBehavior("edit +1", expectedMessage); //index should be unsigned
+        assertCommandBehavior("edit -1", expectedMessage); //index should be unsigned
+        assertCommandBehavior("edit 0", expectedMessage); //index cannot be 0
+        assertCommandBehavior("edit not_a_number", expectedMessage);
+    }
 
+    @Test
+    public void execute_editIndexNotFound_errorMessageShown() throws Exception {
+        String expectedMessage = MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+        TestDataHelper helper = new TestDataHelper();
+        List<Task> taskList = helper.generateTaskList(2);
+
+        // set AB state to 2 tasks
+        model.resetData(new TaskManager());
+        for (Task p : taskList) {
+            model.addTask(p);
+        }
+
+        assertCommandBehavior("edit 3 cook curry", expectedMessage, model.getTaskManager(), taskList);
+    }
+    
+    @Test
+    public void execute_edit_invalidTaskData() throws Exception {
+        assertCommandBehavior(
+                "edit 1 []\\[;]", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
+        assertCommandBehavior(
+                "edit 1 Valid Description t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
+    }
+    
+    @Test
+    public void execute_edit_updatesCorrectTask() throws Exception {
+        TestDataHelper helper = new TestDataHelper();
+        List<Task> threeTasks = helper.generateTaskList(3);
+
+        TaskManager expectedAB = helper.generateTaskManager(threeTasks);
+        expectedAB.removeTask(threeTasks.get(1));
+        Task newTask = helper.adam();
+        expectedAB.addTask(newTask);
+        helper.addToModel(model, threeTasks);
+
+        assertCommandBehavior(helper.generateEditCommand(newTask, 2) ,
+                String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, threeTasks.get(1), newTask),
+                expectedAB,
+                expectedAB.getTaskList());
+    }
 
     @Test
     public void execute_find_invalidArgsFormat() throws Exception {
@@ -403,6 +452,22 @@ public class LogicManagerTest {
 
             cmd.append("add ");
 
+            cmd.append(p.getDescription().toString());
+
+            UniqueTagList tags = p.getTags();
+            for(Tag t: tags){
+                cmd.append(" t/").append(t.tagName);
+            }
+
+            return cmd.toString();
+        }
+        
+        /** Generates the correct edit command based on the task given */
+        String generateEditCommand(Task p, int idx) {
+            StringBuffer cmd = new StringBuffer();
+
+            cmd.append("edit ");
+            cmd.append(idx + " ");
             cmd.append(p.getDescription().toString());
 
             UniqueTagList tags = p.getTags();
