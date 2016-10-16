@@ -1,5 +1,6 @@
 package seedu.taskell.logic.commands;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
-            + "Parameters: Description [t/TAG]...\n"
+            + "Parameters: DESCRIPTION [by DATE] [t/TAG]...\n"
             + "Example: " + COMMAND_WORD
-            + " Jogging with Peter t/friends t/owesMoney";
+            + " Jogging with Peter by monday t/friends t/owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
@@ -30,7 +31,7 @@ public class AddCommand extends Command {
      *
      * @throws IllegalValueException if any of the raw values are invalid
      */
-    public AddCommand(String description, Set<String> tags)
+    public AddCommand(String description, String taskDate, Set<String> tags)
             throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -38,6 +39,7 @@ public class AddCommand extends Command {
         }
         this.toAdd = new Task(
                 new Description(description),
+                new TaskDate(taskDate),
                 new UniqueTagList(tagSet)
         );
     }
@@ -53,5 +55,5 @@ public class AddCommand extends Command {
         }
 
     }
-
+    
 }

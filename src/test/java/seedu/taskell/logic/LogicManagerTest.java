@@ -377,10 +377,11 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             Description description= new Description("Adam Brown");
+            TaskDate taskDate = new TaskDate("11-12-2016");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(description, tags);
+            return new Task(description, taskDate, tags);
         }
 
         /**
@@ -393,6 +394,7 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new Description("Task " + seed),
+                    new TaskDate("12-12-1990"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -404,6 +406,7 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getDescription().toString());
+            cmd.append(" by ").append(p.getTaskDate().taskDateStandardFormat);
 
             UniqueTagList tags = p.getTags();
             for(Tag t: tags){
@@ -486,6 +489,7 @@ public class LogicManagerTest {
         Task generateTaskWithDescription(String description) throws Exception {
             return new Task(
                     new Description(description),
+                    new TaskDate("2-2-1990"),
                     new UniqueTagList(new Tag("tag"))
             );
         }

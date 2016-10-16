@@ -9,6 +9,7 @@ import seedu.taskell.model.tag.UniqueTagList;
 public interface ReadOnlyTask {
 
     Description getDescription();
+    TaskDate getTaskDate();
 
     /**
      * The returned TagList is a deep copy of the internal TagList,
@@ -31,6 +32,8 @@ public interface ReadOnlyTask {
     default String getAsText() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
+                .append(" Date: ")
+                .append(getTaskDate().taskDateForDisplay)
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

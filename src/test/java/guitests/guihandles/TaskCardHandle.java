@@ -10,6 +10,7 @@ import seedu.taskell.model.task.ReadOnlyTask;
  */
 public class TaskCardHandle extends GuiHandle {
     private static final String DESCRIPTION_FIELD_ID = "#description";
+    private static final String TASK_DATE_FIELD_ID = "#taskDate";
 
     private Node node;
 
@@ -26,10 +27,13 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(DESCRIPTION_FIELD_ID);
     }
 
-    
+    public String getTaskDate() {
+        return getTextFromLabel(TASK_DATE_FIELD_ID);
+    }
 
     public boolean isSameTask(ReadOnlyTask task){
-        return getDescription().equals(task.getDescription().description);
+        return getDescription().equals(task.getDescription().description)
+                && getTaskDate().equals(task.getTaskDate().taskDateStandardFormat);
     }
 
     @Override
