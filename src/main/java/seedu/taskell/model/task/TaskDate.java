@@ -286,7 +286,7 @@ public class TaskDate {
 
     public static boolean isValidToday(String dateToValidate) {
         assert (dateToValidate != null);
-        dateToValidate.toLowerCase();
+        dateToValidate = dateToValidate.toLowerCase();
         
         switch (dateToValidate) {
         case "today":
@@ -300,7 +300,7 @@ public class TaskDate {
 
     public static boolean isValidTomorrow(String dateToValidate) {
         assert (dateToValidate != null);
-        dateToValidate.toLowerCase();
+        dateToValidate = dateToValidate.toLowerCase();
         
         switch (dateToValidate) {
         case "tomorrow":
