@@ -156,24 +156,23 @@ public class LogicManagerTest {
         assertCommandBehavior(
                 "add wrong args wrong args", expectedMessage);
         assertCommandBehavior(
-                "add Valid Description 12345 e/valid@taskTime.butNoPhonePrefix a/valid, taskPriority", expectedMessage);
+                "add Valid Description 1-1-2015 p/EVENT e/12:30AM e/12:45AM a/valid, taskPriority", expectedMessage);
         assertCommandBehavior(
-                "add Valid Description p/12345 valid@taskTime.butNoPrefix a/valid, taskPriority", expectedMessage);
+                "add Valid Description p/EVENT p/1-1-2015 12:30AM 12:45AM valid@taskTime.butNoPrefix a/valid, taskPriority", expectedMessage);
         assertCommandBehavior(
-                "add Valid Description p/12345 e/valid@taskTime.butNoTaskPriorityPrefix valid, taskPriority", expectedMessage);
+                "add Valid Description p/EVENT p/1-1-2015 e/12:30AM e/12:30AM butNoTaskPriorityPrefix valid, taskPriority", expectedMessage);
     }
 
     @Test
     public void execute_add_invalidTaskData() throws Exception {
         assertCommandBehavior(
-                "add []\\[;] p/12345 e/valid@taskTime a/valid, taskPriority", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
+                "add []\\[;] p/EVENT p/1-1-2015 e/12:30AM e/12:45AM a/valid, taskPriority", Description.MESSAGE_DESCRIPTION_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Description p/not_numbers e/valid@taskTime a/valid, taskPriority", TaskDate.MESSAGE_TASK_DATE_CONSTRAINTS);
+                "add Valid Description p/EVENT p/not_numbers e/12:30AM e/12:45AM a/valid, taskPriority", TaskDate.MESSAGE_TASK_DATE_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Description p/12345 e/notATaskTime a/valid, taskPriority", TaskTime.MESSAGE_TASK_TIME_CONSTRAINTS);
+                "add Valid Description p/EVENT p/1-1-2015 e/notATaskTime e/notATaskTime a/valid, taskPriority", TaskTime.MESSAGE_TASK_TIME_CONSTRAINTS);
         assertCommandBehavior(
-                "add Valid Description p/12345 e/valid@taskTime a/valid, taskPriority t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
-
+                "add Valid Description p/EVENT p/12345 e/12:30AM e/12:45AM a/valid, taskPriority t/invalid_-[.tag", Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 
     @Test
@@ -388,13 +387,15 @@ public class LogicManagerTest {
 
         Task adam() throws Exception {
             Description description = new Description("Adam Brown");
-            TaskDate privatePhone = new TaskDate("111111");
-            TaskTime taskTime = new TaskTime("adam@gmail.com");
+            String taskType = Task.EVENT_TASK;
+            TaskDate taskDate = new TaskDate("1-1-2015");
+            TaskTime startTime = new TaskTime("12:30AM");
+            TaskTime endTime = new TaskTime("12:45AM");
             TaskPriority privatetaskPriority = new TaskPriority("111, alpha street");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
-            return new Task(description, privatePhone, taskTime, privatetaskPriority, tags);
+            return new Task(description, taskType, taskDate, startTime, endTime, privatetaskPriority, tags);
         }
 
         /**
@@ -407,8 +408,10 @@ public class LogicManagerTest {
         Task generateTask(int seed) throws Exception {
             return new Task(
                     new Description("Task " + seed),
-                    new TaskDate("" + Math.abs(seed)),
-                    new TaskTime(seed + "@taskTime"),
+                    Task.EVENT_TASK,
+                    new TaskDate("1-1-2015"),
+                    new TaskTime("12:30AM"),
+                    new TaskTime("12:45AM"),
                     new TaskPriority("House of " + seed),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
@@ -421,8 +424,10 @@ public class LogicManagerTest {
             cmd.append("add ");
 
             cmd.append(p.getDescription().toString());
+            cmd.append(" p/").append(p.getTaskType());
             cmd.append(" p/").append(p.getTaskDate());
-            cmd.append(" e/").append(p.getTaskTime());
+            cmd.append(" e/").append(p.getStartTime());
+            cmd.append(" e/").append(p.getEndTime());
             cmd.append(" a/").append(p.getTaskPriority());
 
             UniqueTagList tags = p.getTags();
@@ -507,8 +512,10 @@ public class LogicManagerTest {
         Task generateTaskWithName(String description) throws Exception {
             return new Task(
                     new Description(description),
-                    new TaskDate("1"),
-                    new TaskTime("1@taskTime"),
+                    Task.EVENT_TASK,
+                    new TaskDate("1-1-2015"),
+                    new TaskTime("12:30AM"),
+                    new TaskTime("12:45AM"),
                     new TaskPriority("House of 1"),
                     new UniqueTagList(new Tag("tag"))
             );
