@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import seedu.taskell.model.task.ReadOnlyTask;
+import seedu.taskell.model.task.Task;
 
 public class TaskCard extends UiPart{
 
@@ -15,13 +16,17 @@ public class TaskCard extends UiPart{
     @FXML
     private Label description;
     @FXML
+    private Label taskType;
+    @FXML
     private Label id;
     @FXML
     private Label taskDate;
     @FXML
     private Label taskPriority;
     @FXML
-    private Label taskTime;
+    private Label startTime;
+    @FXML
+    private Label endTime;
     @FXML
     private Label tags;
 
@@ -41,12 +46,14 @@ public class TaskCard extends UiPart{
 
     @FXML
     public void initialize() {
-        description.setText(task.getDescription().description);
+        taskType.setText(task.getTaskType());
         id.setText(displayedIndex + ". ");
-        taskDate.setText(task.getTaskDate().taskDate);
+        description.setText(task.getDescription().description);
         taskPriority.setText(task.getTaskPriority().taskPriority);
-        taskTime.setText(task.getTaskTime().taskTime);
         tags.setText(task.tagsString());
+        taskDate.setText(task.getTaskDate().taskDate);
+        startTime.setText(task.getStartTime().taskTime);
+        endTime.setText(task.getEndTime().taskTime);
     }
 
     public HBox getLayout() {

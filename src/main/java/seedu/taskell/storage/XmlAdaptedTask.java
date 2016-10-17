@@ -18,9 +18,13 @@ public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String description;
     @XmlElement(required = true)
+    private String taskType;
+    @XmlElement(required = true)
     private String date;
     @XmlElement(required = true)
-    private String time;
+    private String startTime;
+    @XmlElement(required = true)
+    private String endTime;
     @XmlElement(required = true)
     private String taskPriority;
 
@@ -40,8 +44,10 @@ public class XmlAdaptedTask {
      */
     public XmlAdaptedTask(ReadOnlyTask source) {
         description = source.getDescription().description;
+        taskType = source.getTaskType();
         date = source.getTaskDate().taskDate;
-        time = source.getTaskTime().taskTime;
+        startTime = source.getStartTime().taskTime;
+        endTime = source.getEndTime().taskTime;
         taskPriority = source.getTaskPriority().taskPriority;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
@@ -60,10 +66,12 @@ public class XmlAdaptedTask {
             taskTags.add(tag.toModelType());
         }
         final Description description = new Description(this.description);
+        final String taskType = this.taskType;
         final TaskDate taskDate = new TaskDate(this.date);
-        final TaskTime taskTime = new TaskTime(this.time);
+        final TaskTime startTime= new TaskTime(this.startTime);
+        final TaskTime endTime = new TaskTime(this.endTime);
         final TaskPriority taskPriority = new TaskPriority(this.taskPriority);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(description, taskDate, taskTime, taskPriority, tags);
+        return new Task(description, taskType, taskDate, startTime, endTime, taskPriority, tags);
     }
 }

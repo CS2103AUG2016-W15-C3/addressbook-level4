@@ -19,6 +19,11 @@ public class TaskBuilder {
         this.task.setDescription(new Description(name));
         return this;
     }
+    
+    public TaskBuilder withTaskType(String taskType) throws IllegalValueException {
+        this.task.setTaskType(taskType);
+        return this;
+    }
 
     public TaskBuilder withTags(String ... tags) throws IllegalValueException {
         for (String tag: tags) {
@@ -37,8 +42,13 @@ public class TaskBuilder {
         return this;
     }
 
-    public TaskBuilder withTaskTime(String taskTime) throws IllegalValueException {
-        this.task.setTaskTime(new TaskTime(taskTime));
+    public TaskBuilder withStartTime(String startTime) throws IllegalValueException {
+        this.task.setStartTime(new TaskTime(startTime));
+        return this;
+    }
+    
+    public TaskBuilder withEndTime(String endTime) throws IllegalValueException {
+        this.task.setEndTime(new TaskTime(endTime));
         return this;
     }
 

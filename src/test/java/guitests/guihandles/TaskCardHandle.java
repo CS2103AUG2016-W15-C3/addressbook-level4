@@ -10,7 +10,8 @@ public class TaskCardHandle extends GuiHandle {
 
     private static final String TASK_PRIORITY_FIELD_ID = "#taskPriority";
     private static final String TASK_DATE_FIELD_ID = "#taskDate";
-    private static final String TASK_TIME_FIELD_ID = "#taskTime";
+    private static final String TASK_START_TIME_FIELD_ID = "#startTime";
+    private static final String TASK_END_TIME_FIELD_ID = "#endTime";
 
     private Node node;
 
@@ -35,13 +36,18 @@ public class TaskCardHandle extends GuiHandle {
         return getTextFromLabel(TASK_DATE_FIELD_ID);
     }
 
-    public String getTaskTime() {
-        return getTextFromLabel(TASK_TIME_FIELD_ID);
+    public String getStartTime() {
+        return getTextFromLabel(TASK_START_TIME_FIELD_ID);
+    }
+    
+    public String getEndTime() {
+        return getTextFromLabel(TASK_END_TIME_FIELD_ID);
     }
 
     public boolean isSameTask(ReadOnlyTask task){
         return getDescription().equals(task.getDescription().description) && getTaskDate().equals(task.getTaskDate().taskDate)
-                && getTaskTime().equals(task.getTaskTime().taskTime) && getTaskPriority().equals(task.getTaskPriority().taskPriority);
+                && getStartTime().equals(task.getStartTime().taskTime) && getEndTime().equals(task.getEndTime().taskTime) 
+                && getTaskPriority().equals(task.getTaskPriority().taskPriority);
     }
 
     @Override
