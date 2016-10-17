@@ -20,9 +20,11 @@ public interface Model {
     /** Deletes the given task. */
     void deleteTask(ReadOnlyTask target) throws UniqueTaskList.TaskNotFoundException;
     void deleteDoneTask(ReadOnlyTask target) throws UniqueDoneList.TaskNotFoundException;
+    
     /** Adds the given task */
     void addTask(Task task) throws UniqueTaskList.DuplicateTaskException;
     void addDoneTask(Task task);
+    
     /** Returns the filtered task list as an {@code UnmodifiableObservableList<ReadOnlyTask>} */
     UnmodifiableObservableList<ReadOnlyTask> getFilteredTaskList();
 
@@ -31,5 +33,8 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to filter by the given keywords*/
     void updateFilteredTaskList(Set<String> keywords);
+    
+    /** Updates the filter of the filtered completed task list to show all tasks */
+    void updateFilteredDoneListToShowAll();
 
 }

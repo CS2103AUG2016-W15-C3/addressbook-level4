@@ -15,6 +15,7 @@ public class Config {
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
     private String taskManagerFilePath = "data/taskmanager.xml";
+    private String donetaskManagerFilePath = "data/donetaskmanager.xml";
     private String taskManagerName = "MyTaskManager";
 
 
@@ -48,11 +49,19 @@ public class Config {
     public String getTaskManagerFilePath() {
         return taskManagerFilePath;
     }
-
+    
+    public String getDoneTaskManagerFilePath(){
+        return donetaskManagerFilePath;
+    }
+    
     public void setTaskManagerFilePath(String taskManagerFilePath) {
         this.taskManagerFilePath = taskManagerFilePath;
     }
-
+    
+    public void setDoneTaskManagerFilePath(String donetaskManagerFilePath) {
+        this.donetaskManagerFilePath = donetaskManagerFilePath;
+    }
+    
     public String getTaskManagerName() {
         return taskManagerName;
     }
@@ -77,12 +86,13 @@ public class Config {
                 && Objects.equals(logLevel, o.logLevel)
                 && Objects.equals(userPrefsFilePath, o.userPrefsFilePath)
                 && Objects.equals(taskManagerFilePath, o.taskManagerFilePath)
+                && Objects.equals(donetaskManagerFilePath, o.donetaskManagerFilePath)
                 && Objects.equals(taskManagerName, o.taskManagerName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(appTitle, logLevel, userPrefsFilePath, taskManagerFilePath, taskManagerName);
+        return Objects.hash(appTitle, logLevel, userPrefsFilePath, taskManagerFilePath, donetaskManagerFilePath, taskManagerName);
     }
 
     @Override
@@ -91,7 +101,8 @@ public class Config {
         sb.append("App title : " + appTitle);
         sb.append("\nCurrent log level : " + logLevel);
         sb.append("\nPreference file Location : " + userPrefsFilePath);
-        sb.append("\nLocal data file location : " + taskManagerFilePath);
+        sb.append("\nLocal tasks file location : " + taskManagerFilePath);
+        sb.append("\nLocal completed tasks file location : " + donetaskManagerFilePath);
         sb.append("\nTaskManager name : " + taskManagerName);
         return sb.toString();
     }

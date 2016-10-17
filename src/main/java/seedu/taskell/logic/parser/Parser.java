@@ -78,6 +78,9 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+            
+        case ListdoneCommand.COMMAND_WORD:
+            return new ListdoneCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

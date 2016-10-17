@@ -52,6 +52,10 @@ public class TaskManager implements ReadOnlyTaskManager {
     public ObservableList<Task> getTasks() {
         return tasks.getInternalList();
     }
+    
+    public ObservableList<Task> getDoneTasks() {
+        return DoneTasks.getInternalList();
+    }
 
     public void setTasks(List<Task> tasks) {
         this.tasks.getInternalList().setAll(tasks);
@@ -161,7 +165,11 @@ public class TaskManager implements ReadOnlyTaskManager {
         return this.tags;
     }
 
-
+    @Override
+    public UniqueDoneList getUniqueDoneList() {
+        return this.DoneTasks;
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -176,10 +184,6 @@ public class TaskManager implements ReadOnlyTaskManager {
         return Objects.hash(tasks, tags);
     }
 
-    @Override
-    public UniqueDoneList getUniqueDoneList() {
-        return this.DoneTasks;
-    }
 
     @Override
     public List<ReadOnlyTask> getDoneList() {

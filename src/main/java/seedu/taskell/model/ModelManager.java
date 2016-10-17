@@ -24,6 +24,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final TaskManager taskManager;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> filteredDoneTasks;
 
     /**
      * Initializes a ModelManager with the given TaskManager
@@ -38,6 +39,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         taskManager = new TaskManager(src);
         filteredTasks = new FilteredList<>(taskManager.getTasks());
+        filteredDoneTasks = new FilteredList<>(taskManager.getDoneTasks());
     }
 
     public ModelManager() {
@@ -47,6 +49,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ModelManager(ReadOnlyTaskManager initialData, UserPrefs userPrefs) {
         taskManager = new TaskManager(initialData);
         filteredTasks = new FilteredList<>(taskManager.getTasks());
+        filteredDoneTasks = new FilteredList<>(taskManager.getDoneTasks());
     }
 
     @Override
@@ -101,6 +104,11 @@ public class ModelManager extends ComponentManager implements Model {
         filteredTasks.setPredicate(null);
     }
 
+    @Override
+    public void updateFilteredDoneListToShowAll() {
+        filteredDoneTasks.setPredicate(null);
+    }
+    
     @Override
     public void updateFilteredTaskList(Set<String> keywords){
         updateFilteredTaskList(new PredicateExpression(new NameQualifier(keywords)));
