@@ -7,11 +7,11 @@ import seedu.taskell.model.task.ReadOnlyTask;
 
 public class TaskCardHandle extends GuiHandle {
     private static final String DESCRIPTION_FIELD_ID = "#description";
-
     private static final String TASK_PRIORITY_FIELD_ID = "#taskPriority";
     private static final String TASK_DATE_FIELD_ID = "#taskDate";
     private static final String TASK_START_TIME_FIELD_ID = "#startTime";
     private static final String TASK_END_TIME_FIELD_ID = "#endTime";
+    private static final String TASK_COMPLETE_FIELD_ID = "#taskComplete";
 
     private Node node;
 
@@ -43,11 +43,16 @@ public class TaskCardHandle extends GuiHandle {
     public String getEndTime() {
         return getTextFromLabel(TASK_END_TIME_FIELD_ID);
     }
+    
+    public String getTaskComplete() {
+        return getTextFromLabel(TASK_COMPLETE_FIELD_ID);
+    }
 
     public boolean isSameTask(ReadOnlyTask task){
         return getDescription().equals(task.getDescription().description) && getTaskDate().equals(task.getTaskDate().taskDate)
                 && getStartTime().equals(task.getStartTime().taskTime) && getEndTime().equals(task.getEndTime().taskTime) 
-                && getTaskPriority().equals(task.getTaskPriority().taskPriority);
+                && getTaskPriority().equals(task.getTaskPriority().taskPriority)
+                && getTaskComplete().equals(task.getIsComplete().isCompleted);
     }
 
     @Override
