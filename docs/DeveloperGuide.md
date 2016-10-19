@@ -14,7 +14,9 @@
 
 ##Introduction
 
-Taskell is a simple software for users to keep track of their daily tasks and manage their busy schedule. This guide will help you understand the design and implementation of Taskell. 
+Taskell is a simple software for users to keep track of their daily tasks and manage their busy schedule. Key board lovers reap the full benefit of Taskell as it implements a command-line interface.
+
+This guide will help you understand the design and implementation of Taskell. It helps you understand how Taskell works and how you can contribute for further development. This guide follows a top-down approach by giving an overview of the essential components first followed by thorough explanation later.
 
 ## Setting Up
 
@@ -26,7 +28,7 @@ Taskell is a simple software for users to keep track of their daily tasks and ma
     This app will not work with earlier versions of Java 8.
     
 2. **Eclipse** IDE
-3. **e(fx)clipse** plugin for Eclipse (Do the steps 2 onwards given in
+3. **E(fx)clipse** plugin for Eclipse (Do the steps 2 onwards given in
    [this page](http://www.eclipse.org/efxclipse/install.html#for-the-ambitious))
 4. **Buildship Gradle Integration** plugin from the Eclipse Marketplace
 
@@ -49,7 +51,11 @@ Taskell is a simple software for users to keep track of their daily tasks and ma
 
 ### Architecture
 
-<img src="images/Architecture.png" width="600"><br>
+<p align="center">
+<img src="images/Architecture.png" width="800"><br>
+
+<em>Diagram 1: Architecture Diagram</em>
+</p>
 
 The Architecture Diagram given above explains the high-level design of the Application.
 Given below is a quick overview of each component.<br>
@@ -74,12 +80,20 @@ Each of the four components
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
 
-<br><img src="images/LogicClassDiagram.png" width="800"><br>
+<p align="center">
+<img src="images/LogicClassDiagram.png" width="800"><br>
+
+<em>Diagram 2: Logic Class Diagram</em>
+</p>
 
 The `Logic` component above defines it's API in the `Logic.java`
 interface and exposes its functionality using the `LogicManager.java` class.<br>
 
-<img src="images\SDforDeleteTask.png" width="800">
+<p align="center">
+<img src="images\SDforDeleteTask.png" width="800"><br>
+
+<em>Diagram 3: Sequence Diagram for Delete Task</em>
+</p>
 
 The Sequence Diagram above shows how the components interact for the scenario where the user issues the
 command `delete 1`.
@@ -87,7 +101,11 @@ command `delete 1`.
 >Note how the `Model` simply raises a `TaskManagerChangedEvent` when the Task Manager data is changed,
  instead of asking the `Storage` to save the updates to the hard disk.
 
-<br><img src="images\SDforDeleteTaskEventHandling.png" width="800">
+<p align="center">
+<img src="images\SDforDeleteTaskEventHandling.png" width="800"><br>
+
+<em>Diagram 4: Sequence Diagram for Delete Task Event Handling</em>
+</p>
 
 The diagram above shows how the `EventsCenter` reacts to that event, which eventually results in the updates
 being saved to the hard disk. The status bar of the UI is updated to reflect the 'Last Updated' time. <br>
@@ -100,9 +118,13 @@ The sections below give more details of each component.
 
 ### UI Component
 
+<p align="center">
 <img src="images/UiClassDiagram.png" width="800"><br>
 
-The picture above gives an overview of how the `UI`component is implemented.<br>
+<em>Diagram 5: UI Class Diagram </em>
+</p>
+
+The diagram above gives an overview of how the `UI`component is implemented.<br>
 
 **API** : [`Ui.java`](../src/main/java/seedu/taskell/ui/Ui.java)
 
@@ -122,27 +144,38 @@ The `UI` component,
 
 ### Logic Component
 
+<p align="center">
 <img src="images/LogicClassDiagram.png" width="800"><br>
 
-The picture above gives an overview of how the `Logic`component is implemented.<br>
+<em>Diagram 6: Logic Class Diagram </em>
+</p>
+
+The diagram above gives an overview of how the `Logic`component is implemented.<br>
 <br>**API** : [`Logic.java`](../src/main/java/seedu/taskell/logic/Logic.java)
 
 The `Logic` component,
-* Uses the `Parser` class to parse the user command: results in a `Command` object which is executed by the `LogicManager`.
+* Uses the `Parser` class to parse the user command, resulting in a `Command` object which is executed by the `LogicManager`.
 * Affects the `Model` (e.g. adding a task) and/or raise events.
 * Executes the necessary command and the result is encapsulated as a  `CommandResult` to be passed back to the `UI`.
 
-<br><img src="images/DeleteTaskSdForLogic.png" width="800"><br>
+<p align="center">
+<img src="images/DeleteTaskSdForLogic.png" width="800"><br>
+  
+<em>Diagram 7: Delete Task Sequence Diagram For Logic</em>
+</p>
 
-The picture above shows the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
+The diagram above shows the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")`
  API call.<br>
  
 ### Model Component
 
+<p align="center">
 <img src="images/ModelClassDiagram.png" width="800"><br>
 
+<em>Diagram 7: Model Class Diagram </em>
+</p>
 
-The picture above gives an overview of how the `Model`component is implemented.<br>
+The diagram above gives an overview of how the `Model` component is implemented.<br>
 <br>**API** : [`Model.java`](../src/main/java/seedu/taskell/model/Model.java)
 
 The `Model` component,
@@ -154,9 +187,13 @@ The `Model` component,
 
 ### Storage Component
 
+<p align="center">
 <img src="images/StorageClassDiagram.png" width="800"><br>
 
-The picture above gives an overview of how the `Storage`component is implemented.<br>
+<em>Diagram 8: Storage Class Diagram </em>
+</p>
+
+The diagram above gives an overview of how the `Storage` component is implemented.<br>
 <br>**API** : [`Storage.java`](../src/main/java/seedu/taskell/storage/Storage.java)
 
 The `Storage` component,
@@ -204,7 +241,7 @@ Tests can be found in the `./src/test/java` folder.
 
 * To run all tests, right-click on the `src/test/java` folder and choose
   `Run as` > `JUnit Test`
-* To run a subset of tests, you can right-click on a test package, test class, or a test and choose
+* To run a subset of tests, right-click on a test package, test class, or a test and choose
   to run as a JUnit test.
 
 **Using Gradle**:
@@ -221,13 +258,13 @@ We have two types of tests:
    2. _Integration tests_ that are checking the integration of multiple code units 
      (those code units are assumed to be working).<br>
       e.g. `seedu.taskell.storage.StorageManagerTest`
-   3. Hybrids of unit and integration tests. These test are checking multiple code units as well as 
+   3. Hybrids of unit and integration tests. These tests are checking multiple code units as well as 
       how the are connected together.<br>
       e.g. `seedu.taskell.logic.LogicManagerTest`
   
 **Headless GUI Testing** :
 Thanks to the [TestFX](https://github.com/TestFX/TestFX) library we use,
- our GUI tests can be run in the _headless_ mode. 
+ our GUI tests can be run in the headless mode. 
  In the headless mode, GUI tests do not show up on the screen.
  That means the developer can do other things on the Computer while the tests are running.<br>
  See [UsingGradle.md](UsingGradle.md#running-tests) to learn how to run tests in headless mode.
@@ -267,7 +304,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have)  - `* *`,  Low (un
 
 
 Priority | As a ... | I want to ... | So that I can...
--------- | :-------- | :--------- | :-----------
+-------- | :---------- | :--------- | :-----------
 `* * *` | new user | see user guide | refer to the different commands when I forget how to use the application.
 `* * *` | user |  add a task | take note of all my tasks.
 `* * *` | user | delete a task | remove task that I no longer need.
@@ -488,35 +525,30 @@ NIL
 
 > Tasks with no deadline
 
-##### Private contact detail
-
-> A contact detail that is not meant to be shared with others
-
 ## Appendix E : Product Survey
 #### WunderList
 **Pros:**<br>
-1. Support for cross-platform operations<br>
-2. Use tags for any tasks<br>
-3. Share tasks with other people and manage the shared tasks<br> 
-4. Categorize tasks into different categories<br>
-5. Attach different types of file inside the task, such as photos, PDF and PowerPoint<br>
-6. Use of short form command<br>
+1. Has support for cross-platform operations<br>
+2. Can Share tasks with other people and manage them<br> 
+3. Can categorize tasks into different categories<br>
+4. Can attach different types of file inside the task, such as photos, PDF and PowerPoint<br>
 
 **Cons:**<br>
-1. Only have two priority levels<br>
+1. Has limited priority level<br>
+2. Has no undo operation<br>
 
 #### Remember the Milk
 **Pros:**<br>
-1. Use offline and be synced once internet connection is established<br>
-2. Handle some natural language processing by saving deadlines from task information itself (e.g. Do math homework by tomorrow: Saves task with deadline set to date of tomorrow)<br>
-3. Undo operation when marking tasks as done (recover from accidentally clicking done)<br>
-4. Set priority with ordering<br>
-5. Set recursive tasks<br>
+1. Can Use offline and sync once internet connection is established<br>
+2. Can handle some natural language processing by saving deadlines from task information itself (e.g. Do math homework by tomorrow: Saves task with deadline set to date of tomorrow)<br>
+3. Can Undo operation when marking tasks as done (recover from accidentally clicking done)<br>
+4. Can set priority with some form of order<br>
+5. Can set recursive tasks<br>
 
 **Cons:**<br>
 1. Need to click frequently to enter a task (if using desktop, not application) <br>
-2. Need to remember lots of shortcuts to remember, so user is less likely to use them<br>
-3. Display of the interface is cluttered, not intuitive<br>
+2. Need to remember lots of shortcuts, so user is less likely to use them<br>
+3. Has a cluttered interface, thus not intuitive<br>
 4. Does not support calendar view in-house, but there are plugins that display calendar views<br>
 
 #### Google Calendar
@@ -526,8 +558,8 @@ NIL
 3. Can customize background picture<br>
 
 **Cons:**<br>
-1. Flexibility in the way to view the calendar is limited<br>
-2. Information is too much in 1 page in application<br>
+1. Does not have flexibility to view the calendar<br>
+2. Has too much information in 1 page in application<br>
 
 #### Any.do
 **Pros:**<br>
@@ -539,3 +571,4 @@ NIL
 
 **Cons:**<br>
 1. Require internet connection<br>
+2. Has no support for recurring tasks<br>
