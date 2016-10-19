@@ -7,6 +7,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Ruth Mueller</description>
@@ -15,6 +16,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Heinz Kurz</description>
@@ -23,6 +25,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Cornelia Meier</description>
@@ -31,6 +34,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Werner Meyer</description>
@@ -39,6 +43,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Lydia Kunz</description>
@@ -47,6 +52,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Anna Best</description>
@@ -55,6 +61,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Stefan Meier</description>
@@ -63,6 +70,7 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
     <tasks>
         <description>Martin Mueller</description>
@@ -71,5 +79,6 @@
         <startTime isPrivate="false">12:30AM</startTime>
         <endTime isPrivate="false">12:45AM</endTime>
         <taskPriority isPrivate="false">0</taskPriority>
+        <taskComplete isPrivate="false">true</taskComplete>
     </tasks>
 </taskmanager>

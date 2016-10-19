@@ -15,6 +15,7 @@ public class TestTask implements ReadOnlyTask {
     private TaskTime startTime;
     private TaskTime endTime;
     private TaskDate taskDate;
+    private TaskComplete isCompleted;
     private UniqueTagList tags;
 
     public TestTask() {
@@ -44,7 +45,10 @@ public class TestTask implements ReadOnlyTask {
     public void setTaskDate(TaskDate taskDate) {
         this.taskDate = taskDate;
     }
-
+    
+    public void setTaskComplete(TaskComplete isCompleted){
+        this.isCompleted = isCompleted;
+    }
     @Override
     public Description getDescription() {
         return description;
@@ -79,7 +83,12 @@ public class TestTask implements ReadOnlyTask {
     public UniqueTagList getTags() {
         return tags;
     }
-
+    
+    @Override
+    public TaskComplete getIsComplete() {
+        return isCompleted;
+    }
+    
     @Override
     public String toString() {
         return getAsText();

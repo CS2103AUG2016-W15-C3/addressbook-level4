@@ -66,15 +66,15 @@ public class TestUtil {
     private static Task[] getSampleTaskData() {
         try {
             return new Task[]{
-                    new Task(new Description("Ali Muster"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Boris Mueller"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Carl Kurz"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Daniel Meier"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Elle Meyer"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Fiona Kunz"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("George Best"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Hoon Meier"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList()),
-                    new Task(new Description("Ida Mueller"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new UniqueTagList())
+                    new Task(new Description("Ali Muster"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Boris Mueller"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Carl Kurz"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Daniel Meier"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Elle Meyer"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Fiona Kunz"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("George Best"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Hoon Meier"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList()),
+                    new Task(new Description("Ida Mueller"), Task.EVENT_TASK, new TaskDate("1-1-2015"), new TaskTime("12:30AM"), new TaskTime("12:45AM"), new TaskPriority("0"), new TaskComplete("true"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;

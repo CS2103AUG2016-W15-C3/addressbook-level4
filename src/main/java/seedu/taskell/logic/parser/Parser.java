@@ -42,7 +42,7 @@ public class Parser {
                     + " (?<isStartPrivate>p?)e/(?<startTime>[^/]+)"
                     + " (?<isEndPrivate>p?)e/(?<endTime>[^/]+)"
                     + " (?<isTaskPriorityPrivate>p?)a/(?<taskPriority>[^/]+)"
-                    + " (?<isTaskCompletePrivate>p?)d/(?<taskComplete >[^/]+)"
+                    + " (?<isTaskCompletePrivate>p?)a/(?<taskComplete>[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final String BY = "by";
