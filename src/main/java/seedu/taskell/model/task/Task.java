@@ -23,11 +23,11 @@ public class Task implements ReadOnlyTask {
     private TaskPriority taskPriority;
 
     private UniqueTagList tags;
-
+    private TaskComplete isComplete;
     /**
      * Every field must be present and not null.
      */
-    public Task(Description description, String taskType, TaskDate taskDate, TaskTime startTime, TaskTime endTime, TaskPriority taskPriority, UniqueTagList tags) {
+    public Task(Description description, String taskType, TaskDate taskDate, TaskTime startTime, TaskTime endTime, TaskPriority taskPriority, TaskComplete isComplete, UniqueTagList tags) {
         assert !CollectionUtil.isAnyNull(description, taskType, taskDate, startTime, endTime, taskPriority, tags);
         this.description = description;
         this.taskType = taskType;
@@ -35,7 +35,9 @@ public class Task implements ReadOnlyTask {
         this.startTime = startTime;
         this.endTime = endTime;
         this.taskPriority = taskPriority;
+        this.isComplete = isComplete;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        
     }
 
     public Task(String description) throws IllegalValueException{
@@ -45,7 +47,7 @@ public class Task implements ReadOnlyTask {
      * Copy constructor.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getDescription(), source.getTaskType(), source.getTaskDate(), source.getStartTime(), source.getEndTime(), source.getTaskPriority(), source.getTags());
+        this(source.getDescription(), source.getTaskType(), source.getTaskDate(), source.getStartTime(), source.getEndTime(), source.getTaskPriority(), source.getIsComplete(), source.getTags());
     }
 
     @Override
@@ -77,7 +79,12 @@ public class Task implements ReadOnlyTask {
     public TaskPriority getTaskPriority() {
         return taskPriority;
     }
-
+    
+    @Override
+    public TaskComplete getIsComplete() {
+        return isComplete;
+    }
+    
     @Override
     public UniqueTagList getTags() {
         return new UniqueTagList(tags);

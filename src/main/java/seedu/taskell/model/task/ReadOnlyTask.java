@@ -13,7 +13,7 @@ public interface ReadOnlyTask {
     TaskTime getStartTime();
     TaskTime getEndTime();
     TaskPriority getTaskPriority();
-
+    TaskComplete getIsComplete();
     /**
      * The returned TagList is a deep copy of the internal TagList,
      * changes on the returned list will not affect the task's internal tags.
@@ -31,7 +31,8 @@ public interface ReadOnlyTask {
                 && other.getTaskDate().equals(this.getTaskDate())
                 && other.getStartTime().equals(this.getStartTime())
                 && other.getEndTime().equals(this.getEndTime())
-                && other.getTaskPriority().equals(this.getTaskPriority()));
+                && other.getTaskPriority().equals(this.getTaskPriority())
+                && other.getIsComplete().equals(this.getIsComplete()));
     }
 
     /**

@@ -47,7 +47,7 @@ public class EditPriorityCommand extends Command {
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
         Task newTask = new Task(taskToEdit.getDescription(),taskToEdit.getTaskType(),taskToEdit.getTaskDate(), taskToEdit.getStartTime(),taskToEdit.getEndTime(),
-                taskPriority,taskToEdit.getTags()
+                taskPriority, taskToEdit.getIsComplete(), taskToEdit.getTags()
         );
         try {
             model.editTask(taskToEdit,newTask);

@@ -12,8 +12,8 @@ import seedu.taskell.model.tag.UniqueTagList;
  */
 public class FloatingTask extends Task {
 
-    public FloatingTask(Description description, String taskType, TaskDate taskDate, TaskTime startTime, TaskTime endTime, TaskPriority taskPriority, UniqueTagList tags) {
-        super(description, Task.FLOATING_TASK, taskDate, startTime, endTime, taskPriority, tags);
+    public FloatingTask(Description description, String taskType, TaskDate taskDate, TaskTime startTime, TaskTime endTime, TaskPriority taskPriority, TaskComplete isComplete, UniqueTagList tags) {
+        super(description, Task.FLOATING_TASK, taskDate, startTime, endTime, taskPriority, isComplete, tags);
     }
 
     @Override

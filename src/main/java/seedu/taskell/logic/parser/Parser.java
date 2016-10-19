@@ -42,6 +42,7 @@ public class Parser {
                     + " (?<isStartPrivate>p?)e/(?<startTime>[^/]+)"
                     + " (?<isEndPrivate>p?)e/(?<endTime>[^/]+)"
                     + " (?<isTaskPriorityPrivate>p?)a/(?<taskPriority>[^/]+)"
+                    + " (?<isTaskCompletePrivate>p?)d/(?<taskComplete >[^/]+)"
                     + "(?<tagArguments>(?: t/[^/]+)*)"); // variable number of tags
 
     private static final String BY = "by";
@@ -106,7 +107,9 @@ public class Parser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
+            
+        case DoneCommand.COMMAND_WORD:
+            return prepareDone(arguments);
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -637,6 +640,16 @@ public class Parser {
         final String[] keywords = matcher.group("keywords").split("\\s+");
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
+    }
+    
+    private Command prepareDone(String args){
+        Optional<Integer> index = parseIndex(args);
+        if(!index.isPresent()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+        }
+
+        return new DoneCommand(index.get());
     }
 
 }

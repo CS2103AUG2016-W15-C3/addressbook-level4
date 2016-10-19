@@ -46,7 +46,7 @@ public class EditDateCommand extends Command {
 
         ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
         Task newTask = new Task(taskToEdit.getDescription(), taskToEdit.getTaskType(), taskDate,
-                taskToEdit.getStartTime(), taskToEdit.getEndTime(), taskToEdit.getTaskPriority(), taskToEdit.getTags());
+                taskToEdit.getStartTime(), taskToEdit.getEndTime(), taskToEdit.getTaskPriority(), taskToEdit.getIsComplete(), taskToEdit.getTags());
         try {
             model.editTask(taskToEdit, newTask);
         } catch (TaskNotFoundException pnfe) {

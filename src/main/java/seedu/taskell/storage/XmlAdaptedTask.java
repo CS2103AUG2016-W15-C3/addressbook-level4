@@ -27,7 +27,8 @@ public class XmlAdaptedTask {
     private String endTime;
     @XmlElement(required = true)
     private String taskPriority;
-
+    @XmlElement(required = true)
+    private String taskComplete;
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
 
@@ -49,6 +50,7 @@ public class XmlAdaptedTask {
         startTime = source.getStartTime().taskTime;
         endTime = source.getEndTime().taskTime;
         taskPriority = source.getTaskPriority().taskPriority;
+        taskComplete = source.getIsComplete().isCompleted();
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -71,7 +73,8 @@ public class XmlAdaptedTask {
         final TaskTime startTime= new TaskTime(this.startTime);
         final TaskTime endTime = new TaskTime(this.endTime);
         final TaskPriority taskPriority = new TaskPriority(this.taskPriority);
+        final TaskComplete taskComplete = new TaskComplete(this.taskComplete);
         final UniqueTagList tags = new UniqueTagList(taskTags);
-        return new Task(description, taskType, taskDate, startTime, endTime, taskPriority, tags);
+        return new Task(description, taskType, taskDate, startTime, endTime, taskPriority, taskComplete, tags);
     }
 }

@@ -28,6 +28,8 @@ public class TaskCard extends UiPart{
     @FXML
     private Label endTime;
     @FXML
+    private Label isComplete;
+    @FXML
     private Label tags;
 
     private ReadOnlyTask task;
@@ -54,6 +56,7 @@ public class TaskCard extends UiPart{
         taskDate.setText(task.getTaskDate().taskDate);
         startTime.setText(task.getStartTime().taskTime);
         endTime.setText(task.getEndTime().taskTime);
+        isComplete.setText(task.getIsComplete().isCompleted());
     }
 
     public HBox getLayout() {
