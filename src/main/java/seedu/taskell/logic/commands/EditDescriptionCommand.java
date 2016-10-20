@@ -18,7 +18,7 @@ import seedu.taskell.model.task.UniqueTaskList.TaskNotFoundException;
  * Edits a task identified using it's last displayed index from the task manager.
  */
 public class EditDescriptionCommand extends Command {
-    public static final String COMMAND_WORD = "edit-description";
+    public static final String COMMAND_WORD = "edit-desc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the description task identified by the index number used in the last task listing.\n"
