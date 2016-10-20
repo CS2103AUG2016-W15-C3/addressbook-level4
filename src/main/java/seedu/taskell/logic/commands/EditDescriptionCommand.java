@@ -28,7 +28,7 @@ public class EditDescriptionCommand extends Command {
             + "Example: " + COMMAND_WORD_1 + " 1 buy cake\n"
             + "Example: " + COMMAND_WORD_2 + " 1 buy cake ";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Old Task: %1$s \n\nNewTask: %2$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Original Task: %1$s \n\nUpdatedTask: %2$s";
 
     public final int targetIndex;
     public final Description description;
