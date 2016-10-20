@@ -18,12 +18,15 @@ import seedu.taskell.model.task.UniqueTaskList.TaskNotFoundException;
  * Edits a task identified using it's last displayed index from the task manager.
  */
 public class EditDescriptionCommand extends Command {
-    public static final String COMMAND_WORD = "edit-desc";
+    public static final String COMMAND_WORD_1 = "edit-desc";
+    public static final String COMMAND_WORD_2 = "edit-name";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD_1
+            + "/"+ COMMAND_WORD_2
             + ": Edits the description task identified by the index number used in the last task listing.\n"
             + "Parameters: INDEX (must be a positive integer) NEW_DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD + " 1 buy cake ";
+            + "Example: " + COMMAND_WORD_1 + " 1 buy cake\n"
+            + "Example: " + COMMAND_WORD_2 + " 1 buy cake ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Old Task: %1$s \n\nNewTask: %2$s";
 

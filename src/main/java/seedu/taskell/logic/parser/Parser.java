@@ -94,7 +94,10 @@ public class Parser {
         case EditDateCommand.COMMAND_WORD:
             return prepareEditDate(arguments);
 
-        case EditDescriptionCommand.COMMAND_WORD:
+        case EditDescriptionCommand.COMMAND_WORD_1:
+            return prepareEditDescription(arguments);
+            
+        case EditDescriptionCommand.COMMAND_WORD_2:
             return prepareEditDescription(arguments);
 
         case EditStartTimeCommand.COMMAND_WORD:
