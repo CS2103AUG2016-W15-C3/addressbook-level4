@@ -101,7 +101,13 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
+        
+        case ListDoneCommand.COMMAND_WORD:
+            return new ListDoneCommand();
+        
+        case ListDoCommand.COMMAND_WORD:
+            return new ListDoCommand();
+        
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -641,6 +647,8 @@ public class Parser {
         final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
         return new FindCommand(keywordSet);
     }
+    
+        
     
     private Command prepareDone(String args){
         Optional<Integer> index = parseIndex(args);
