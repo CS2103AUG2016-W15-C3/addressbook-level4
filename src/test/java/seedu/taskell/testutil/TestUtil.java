@@ -326,6 +326,18 @@ public class TestUtil {
         }
         return list;
     }
+    
+    public static TestTask editTaskDescription(TestTask taskToEdit, String newDescription) throws IllegalValueException{
+        TestTask newTask = new TestTask();
+        newTask.setDescription(new Description(newDescription));
+        newTask.setEndTime(taskToEdit.getEndTime());
+        newTask.setStartTime(taskToEdit.getStartTime());
+        newTask.setTaskDate(taskToEdit.getTaskDate());
+        newTask.setTaskPriority(taskToEdit.getTaskPriority());
+        newTask.setTaskPriority(taskToEdit.getTaskPriority());
+        newTask.setTaskTags(taskToEdit.getTags());
+        return newTask;
+    }
 
     public static boolean compareCardAndTask(TaskCardHandle card, ReadOnlyTask task) {
         return card.isSameTask(task);

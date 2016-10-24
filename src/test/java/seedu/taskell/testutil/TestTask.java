@@ -44,6 +44,10 @@ public class TestTask implements ReadOnlyTask {
     public void setTaskDate(TaskDate taskDate) {
         this.taskDate = taskDate;
     }
+    
+    public void setTaskTags(UniqueTagList tags) {
+        this.tags = tags;
+    }
 
     @Override
     public Description getDescription() {
