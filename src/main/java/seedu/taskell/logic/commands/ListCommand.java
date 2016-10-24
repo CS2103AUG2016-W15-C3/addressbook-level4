@@ -1,20 +1,24 @@
 package seedu.taskell.logic.commands;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Lists all tasks in the task manager to the user.
- */
 public class ListCommand extends Command {
-
+    
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tasks";
+    public static final String MESSAGE_SUCCESS = "Listed all tasks need to be done";
 
-    public ListCommand() {}
+    private Set<String> keywordSet = new HashSet<>(Arrays.asList("not"));
+
+    public ListCommand() {
+       
+    }
 
     @Override
     public CommandResult execute() {
-        model.updateFilteredListToShowAll();
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.updateFilteredtaskListCompleted(keywordSet);
+        return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
     }
 }

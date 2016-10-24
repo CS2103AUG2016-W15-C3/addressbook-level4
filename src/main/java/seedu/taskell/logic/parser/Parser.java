@@ -99,14 +99,14 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListallCommand.COMMAND_WORD:
+            return new ListallCommand();
         
         case ListDoneCommand.COMMAND_WORD:
             return new ListDoneCommand();
         
-        case ListDoCommand.COMMAND_WORD:
-            return new ListDoCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
         
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

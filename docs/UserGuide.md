@@ -66,13 +66,13 @@ The use of word �on� gives more flexibility for you.<br>
 To view a list of all the tasks, <kbd>Enter</kbd> list.<br>
 <br>
 Formats: 
-- `list` <br>
+- `listall` <br>
 Prints a list of all tasks.<br>
 - `list DATE` <br> 
 Prints a list of all the completed tasks.<br>
 - `listdone` <br>
 Prints a list of all the tasks due on the specific date.<br>
-- `listdo` <br> 
+- `list` <br> 
 Prints a list of all the uncompleted tasks.<br>
 <br><img src="images/ListToday.png" width="600"></br>
 Picture 2: List of tasks due today printed when �List today� is keyed in.
@@ -160,9 +160,9 @@ Clear | `clear`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Find Tag | `find-tag KEYWORD`
-List | `list`
+List All Tasks | `listall`
 List Given Day | `list [DATE]`
 List Tasks Done | `listdone`
-List Tasks need to be done | `listdo`
+List Tasks need to be done | `list`
 Help | `help`
 Undo | `undo`
