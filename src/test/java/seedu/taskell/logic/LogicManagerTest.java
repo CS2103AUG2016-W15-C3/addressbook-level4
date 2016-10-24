@@ -216,7 +216,7 @@ public class LogicManagerTest {
         // prepare task manager state
         helper.addToModel(model, 2);
 
-        assertCommandBehavior("list",
+        assertCommandBehavior("list-all",
                 ListallCommand.MESSAGE_SUCCESS,
                 expectedAB,
                 expectedList);

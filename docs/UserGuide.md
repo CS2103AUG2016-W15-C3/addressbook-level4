@@ -53,7 +53,7 @@ This format can be used to add events held on a certain day.<br>
 This format can be used to add tasks with a stipulated deadline.<br>
 > Example: `add do lab homework on Friday 7pm` <br>
 -  `add TASK ITEM on [DATE]` <br>
-The use of word �on� gives more flexibility for you.<br>
+The use of word "on" gives more flexibility for you.<br>
 > Example: `add schedule meeting on Thursday` <br>
 - `add TASK ITEM on [DATE][TIME]` <br>
 > Example: `add meet teacher on Friday 7pm` <br>
@@ -66,11 +66,11 @@ The use of word �on� gives more flexibility for you.<br>
 To view a list of all the tasks, <kbd>Enter</kbd> list.<br>
 <br>
 Formats: 
-- `listall` <br>
+- `list-all` <br>
 Prints a list of all tasks.<br>
 - `list DATE` <br> 
 Prints a list of all the completed tasks.<br>
-- `listdone` <br>
+- `list-done` <br>
 Prints a list of all the tasks due on the specific date.<br>
 - `list` <br> 
 Prints a list of all the uncompleted tasks.<br>
@@ -157,6 +157,7 @@ Add Event | `add TASK ITEM by [DATE]`
 Add Event | `add TASK ITEM by [TIME]`
 Add Event With Deadline | `add TASK ITEM by [DATE][TIME]`
 Clear | `clear`
+Complete task | `done`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Find Tag | `find-tag KEYWORD`
@@ -166,3 +167,4 @@ List Tasks Done | `listdone`
 List Tasks need to be done | `list`
 Help | `help`
 Undo | `undo`
+

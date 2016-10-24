@@ -46,7 +46,7 @@ public class TestTask implements ReadOnlyTask {
         this.taskDate = taskDate;
     }
     
-    public void setTaskComplete(TaskComplete isCompleted){
+    public void setTaskComplete(TaskComplete isCompleted) {
         this.isCompleted = isCompleted;
     }
     @Override
