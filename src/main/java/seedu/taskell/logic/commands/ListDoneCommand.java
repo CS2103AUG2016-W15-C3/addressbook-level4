@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class ListDoneCommand extends Command {
     
-    public static final String COMMAND_WORD = "listdone";
+    public static final String COMMAND_WORD = "list-done";
 
     public static final String MESSAGE_SUCCESS = "Listed all completed tasks";
 

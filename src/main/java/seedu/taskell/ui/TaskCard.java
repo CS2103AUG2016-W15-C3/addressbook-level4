@@ -56,7 +56,7 @@ public class TaskCard extends UiPart{
         taskDate.setText(task.getTaskDate().taskDate);
         startTime.setText(task.getStartTime().taskTime);
         endTime.setText(task.getEndTime().taskTime);
-        taskComplete.setText(task.getIsComplete().isCompleted);
+        taskComplete.setText(task.getIsComplete().taskStatus);
     }
 
     public HBox getLayout() {

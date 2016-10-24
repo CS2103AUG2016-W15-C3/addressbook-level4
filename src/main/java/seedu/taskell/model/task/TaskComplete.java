@@ -6,14 +6,14 @@ public class TaskComplete {
     
     public static final String COMPLETED_INFO = "Completed";
     public static final String NOT_COMPLETED_INFO = "Not Completed";
-    public final String isCompleted;
+    public final String taskStatus;
     
-    public TaskComplete(String isCompleted) {
-        this.isCompleted = isCompleted;
+    public TaskComplete(String taskStatus) {
+        this.taskStatus = taskStatus;
     }
     
     public String isCompleted() {
-        return isCompleted;
+        return taskStatus;
     }
     
     public static boolean isValidTaskComplete(String TaskToValidate) {

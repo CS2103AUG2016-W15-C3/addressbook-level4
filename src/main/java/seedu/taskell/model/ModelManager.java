@@ -170,7 +170,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         @Override
         public boolean run(ReadOnlyTask task) {
-            String searchString = task.getIsComplete().isCompleted
+            String searchString = task.getIsComplete().taskStatus
                     + " " + task.tagsSimpleString();
             return CompleteKeyWords.stream()
                     .allMatch(keyword -> StringUtil.containsIgnoreCase(searchString, keyword));

@@ -52,7 +52,7 @@ public class TaskCardHandle extends GuiHandle {
         return getDescription().equals(task.getDescription().description) && getTaskDate().equals(task.getTaskDate().taskDate)
                 && getStartTime().equals(task.getStartTime().taskTime) && getEndTime().equals(task.getEndTime().taskTime) 
                 && getTaskPriority().equals(task.getTaskPriority().taskPriority)
-                && getTaskComplete().equals(task.getIsComplete().isCompleted);
+                && getTaskComplete().equals(task.getIsComplete().taskStatus);
     }
 
     @Override
