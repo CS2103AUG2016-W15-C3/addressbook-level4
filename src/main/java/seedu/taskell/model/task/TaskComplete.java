@@ -17,12 +17,12 @@ public class TaskComplete {
     }
     
     public static boolean isValidTaskComplete(String TaskToValidate) {
-       return TaskToValidate == "true"  || TaskToValidate == "false";
-            
+       return TaskToValidate == "finished"  || TaskToValidate == "not completed";           
     }  
+    
     @Override
     public String toString() {
-        return isCompleted() == "true"? COMPLETED_INFO : NOT_COMPLETED_INFO;
+        return isCompleted() == "finished"? COMPLETED_INFO : NOT_COMPLETED_INFO;
     }
     
     @Override

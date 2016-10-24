@@ -649,7 +649,12 @@ public class Parser {
     }
     
         
-    
+    /**
+     * Parses arguments in the context of the done task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareDone(String args){
         Optional<Integer> index = parseIndex(args);
         if(!index.isPresent()){

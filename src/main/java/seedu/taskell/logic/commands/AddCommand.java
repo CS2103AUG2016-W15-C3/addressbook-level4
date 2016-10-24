@@ -47,7 +47,7 @@ public class AddCommand extends Command {
                     new TaskTime(TaskTime.DEFAULT_START_TIME), 
                     new TaskTime(TaskTime.DEFAULT_END_TIME), 
                     new TaskPriority(taskPriority),
-                    new TaskComplete("true"),
+                    new TaskComplete("not completed"),
                     new UniqueTagList(tagSet));
             break;
         case Task.DEADLINE_TASK:
@@ -58,7 +58,7 @@ public class AddCommand extends Command {
                     new TaskTime(TaskTime.DEFAULT_START_TIME),
                     new TaskTime(endTime),
                     new TaskPriority(taskPriority),
-                    new TaskComplete("true"),
+                    new TaskComplete("not completed"),
                     new UniqueTagList(tagSet));
             break;
         case Task.EVENT_TASK:
@@ -69,7 +69,7 @@ public class AddCommand extends Command {
                     new TaskTime(startTime),
                     new TaskTime(endTime),
                     new TaskPriority(taskPriority),
-                    new TaskComplete("true"),
+                    new TaskComplete("not completed"),
                     new UniqueTagList(tagSet));
             break;
         default:

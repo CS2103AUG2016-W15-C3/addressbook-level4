@@ -36,7 +36,7 @@ public class DoneCommand extends Command {
             return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
         
-        TaskComplete isComplete = new TaskComplete("false");
+        TaskComplete isComplete = new TaskComplete("finished");
         
         ReadOnlyTask taskToDone = lastShownList.get(targetIndex - 1);
         

@@ -10,7 +10,7 @@ public class ListDoneCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all completed tasks";
 
-    private Set<String> keywordSet = new HashSet<>(Arrays.asList("true"));
+    private Set<String> keywordSet = new HashSet<>(Arrays.asList("finished"));
 
     public ListDoneCommand() {
        
@@ -18,7 +18,7 @@ public class ListDoneCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        model.updateFilteredTaskList(keywordSet);
+        model.updateFilteredtaskListCompleted(keywordSet);
         return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
     }
 }

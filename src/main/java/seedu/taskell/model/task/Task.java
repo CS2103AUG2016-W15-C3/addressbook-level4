@@ -20,10 +20,11 @@ public class Task implements ReadOnlyTask {
     private TaskDate taskDate;
     private TaskTime startTime;
     private TaskTime endTime;
+    private TaskComplete isComplete;
     private TaskPriority taskPriority;
 
     private UniqueTagList tags;
-    private TaskComplete isComplete;
+    
     /**
      * Every field must be present and not null.
      */
@@ -107,7 +108,7 @@ public class Task implements ReadOnlyTask {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, taskDate, startTime, endTime, taskPriority, tags);
+        return Objects.hash(description, taskDate, startTime, endTime, isComplete, taskPriority, tags);
     }
 
     @Override

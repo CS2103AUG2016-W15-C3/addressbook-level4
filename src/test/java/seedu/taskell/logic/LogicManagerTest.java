@@ -427,7 +427,7 @@ public class LogicManagerTest {
             TaskTime startTime = new TaskTime("12:30AM");
             TaskTime endTime = new TaskTime("12:45AM");
             TaskPriority privatetaskPriority = new TaskPriority("0");
-            TaskComplete isComplete = new TaskComplete("true");
+            TaskComplete isComplete = new TaskComplete("not completed");
             Tag tag1 = new Tag("tag1");
             Tag tag2 = new Tag("tag2");
             UniqueTagList tags = new UniqueTagList(tag1, tag2);
@@ -450,7 +450,7 @@ public class LogicManagerTest {
                     new TaskTime("12:30AM"),
                     new TaskTime("12:45AM"),
                     new TaskPriority((seed % 4) + ""),
-                    new TaskComplete("true"),
+                    new TaskComplete("not completed"),
                     new UniqueTagList(new Tag("tag" + Math.abs(seed)), new Tag("tag" + Math.abs(seed + 1)))
             );
         }
@@ -554,7 +554,7 @@ public class LogicManagerTest {
                     new TaskTime("12:30AM"),
                     new TaskTime("12:45AM"),
                     new TaskPriority(TaskPriority.NO_PRIORITY),
-                    new TaskComplete("true"),
+                    new TaskComplete("not completed"),
                     new UniqueTagList(new Tag("tag"))
             );
         }

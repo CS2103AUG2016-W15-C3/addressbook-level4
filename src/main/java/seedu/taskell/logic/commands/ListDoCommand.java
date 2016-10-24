@@ -10,15 +10,15 @@ public class ListDoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks need to be done";
 
-    private Set<String> keywordSet = new HashSet<>(Arrays.asList("true"));
+    private Set<String> keywordSet = new HashSet<>(Arrays.asList("not"));
 
     public ListDoCommand() {
-        
+       
     }
 
     @Override
     public CommandResult execute() {
-        model.updateFilteredTaskList(keywordSet);
+        model.updateFilteredtaskListCompleted(keywordSet);
         return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
     }
 }
