@@ -53,7 +53,7 @@ This format can be used to add events held on a certain day.<br>
 This format can be used to add tasks with a stipulated deadline.<br>
 > Example: `add do lab homework on Friday 7pm` <br>
 -  `add TASK ITEM on [DATE]` <br>
-The use of word “on” gives more flexibility for you.<br>
+The use of word ï¿½onï¿½ gives more flexibility for you.<br>
 > Example: `add schedule meeting on Thursday` <br>
 - `add TASK ITEM on [DATE][TIME]` <br>
 > Example: `add meet teacher on Friday 7pm` <br>
@@ -67,13 +67,15 @@ To view a list of all the tasks, <kbd>Enter</kbd> list.<br>
 <br>
 Formats: 
 - `list` <br>
-Prints a list of all the uncompleted tasks.<br>
+Prints a list of all tasks.<br>
 - `list DATE` <br> 
 Prints a list of all the completed tasks.<br>
-- `list DONE` <br>
+- `listdone` <br>
 Prints a list of all the tasks due on the specific date.<br>
+- `listdo` <br> 
+Prints a list of all the uncompleted tasks.<br>
 <br><img src="images/ListToday.png" width="600"></br>
-Picture 2: List of tasks due today printed when “List today” is keyed in.
+Picture 2: List of tasks due today printed when ï¿½List todayï¿½ is keyed in.
    
 #### Finding tasks: `find`
 To view tasks with similar keyword, use the find command.<br>
@@ -88,7 +90,7 @@ Prints list of activities with the same tag.<br>
  <br><img src="images/findReport.png" width="600"></br>
  <br><img src="images/findReportResult.png" width="600"></br>
 
-Picture 3 and 4: Keying in “find report” displays list of tasks with report as one of the keywords in task description
+Picture 3 and 4: Keying in ï¿½find reportï¿½ displays list of tasks with report as one of the keywords in task description
 
 > Take Note! <br>
 > * The order of the keywords does not matter. e.g. `chicken egg` will match `egg chicken`.
@@ -99,6 +101,10 @@ Picture 3 and 4: Keying in “find report” displays list of tasks with report as o
 #### Reverting previous action : `undo`
 If you wish to undo your previous action, <kbd>Enter</kbd> undo.<br>
 Format: `undo`
+
+#### Deleting a task : `done`
+To complete a task, use the done command. This command complete the task at a specified INDEX. The index refers to the index number shown in the most recent listing.<br>
+Format: `done INDEX`<br>
 
 #### Deleting a task : `delete`
 To delete a task, use the delete command. This command deletes the task at a specified INDEX. The index refers to the index number shown in the most recent listing.<br>
@@ -156,6 +162,7 @@ Find | `find KEYWORD [MORE_KEYWORDS]`
 Find Tag | `find-tag KEYWORD`
 List | `list`
 List Given Day | `list [DATE]`
-List Tasks Done | `list [DONE]`
+List Tasks Done | `listdone`
+List Tasks need to be done | `listdo`
 Help | `help`
 Undo | `undo`
