@@ -60,7 +60,7 @@ This format can be used to add events held on a certain day.<br>
 This format can be used to add tasks with a stipulated deadline.<br>
 > Example: `add do lab homework on Friday 7pm` <br>
 -  `add TASK ITEM on [DATE]` <br>
-The use of word “on” gives more flexibility for you.<br>
+The use of word ï¿½onï¿½ gives more flexibility for you.<br>
 > Example: `add schedule meeting on Thursday` <br>
 - `add TASK ITEM on [DATE][TIME]` <br>
 > Example: `add meet teacher on Friday 7pm` <br>
@@ -77,10 +77,12 @@ Formats:
 Prints a list of all the uncompleted tasks.<br>
 - `list DATE` <br> 
 Prints a list of all the completed tasks.<br>
-- `list DONE` <br>
+- `list-done` <br>
 Prints a list of all the tasks due on the specific startDate.<br>
+- `list-all` <br>
+Prints a list of all the tasks.<br>
 <br><img src="images/ListToday.png" width="600"></br>
-Picture 2: List of tasks due today printed when “List today” is keyed in.
+Picture 2: List of tasks due today printed when ï¿½List todayï¿½ is keyed in.
    
 <!--- @@author A0142130A --->  
 
@@ -101,7 +103,7 @@ This returns any task with either tag `homework`, `essay`, or `cs2103`.<br>
  
  <!--- @@author ---> 
 
-Picture 3 and 4: Keying in “find report” displays list of tasks with report as one of the keywords in task description
+Picture 3 and 4: Keying in ï¿½find reportï¿½ displays list of tasks with report as one of the keywords in task description
 
 > Take Note! <br>
 > * The order of the keywords does not matter. e.g. `chicken egg` will match `egg chicken`.
@@ -138,6 +140,10 @@ To edit a task, use the edit command. This command edits the task at a specified
 Format: `edit INDEX NEWTASK`<br>
  <br> <img src="images/editCmd.png" width="600"> </br>
 Picture 7: `edit 2 schedule meeting on wednesday: edits the 2nd task in Taskell to "schedule meeting on wednesday."`
+
+#### Deleting a task : `done`
+To complete a task, use the done command. This command complete the task at a specified INDEX. The index refers to the index number shown in the most recent listing.<br>
+Format: `done INDEX`<br>
 
 <!--- @@author A0142130A ---> 
 
@@ -180,9 +186,10 @@ Clear | `clear`
 Delete | `delete INDEX`
 Find | `find KEYWORD [MORE_KEYWORDS]`
 Find Tag | `find-tag KEYWORD [MORE_KEYWORDS]`
-List | `list`
+List Incomplete Tasks | `list`
+List All Tasks | `list-all`
 List Given Day | `list [DATE]`
-List Tasks Done | `list [DONE]`
+List Tasks Done | `list-done`
 List Undo | `list-undo`
 Help | `help`
 Undo | `undo INDEX`
