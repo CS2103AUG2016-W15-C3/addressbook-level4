@@ -33,7 +33,10 @@ public interface Model {
 
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
-
+    
+    /** Updates the filter of the filtered task list to filter by priority*/
+    void updateFilteredTaskListPriority(Set<String> keywords);
+    
     /** Updates the filter of the filtered task list to filter by the given keywords (AND operation)*/
     void updateFilteredTaskList(Set<String> keywords);
 
