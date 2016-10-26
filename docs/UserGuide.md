@@ -11,7 +11,6 @@
 Are you having a hard time remembering all the work you have to do? Do you have trouble finding a task manager that suits your preference for keyboard input? Well, worry no more, Taskell is here for you! <br>
 Taskell will be your personal secretary. It will keep track of your daily tasks and remind you of any important dates and deadlines. What distinguishes Taskell from other task managers is that Taskell only requires a single line of command for every task input. This means that you can record each one of your tasks with just a single statement. You will no longer have to use a mouse if you do not wish to. <br>
 Ready to begin life anew with a more efficient task manager? Read on to find out more!
-
  
 ## Quick Start
 
@@ -109,9 +108,8 @@ Diagram 3: Keying in `find` report `displays a list of tasks with description or
 > The order of the keywords does not matter. e.g. chicken egg will match egg chicken.
 
 #### Reverting to your previous action : `undo`
-Format: `undo`
-> Take Note! <br>
-> You are only allowed to undo the last command.
+Format: `undo INDEX`<br> 
+Example: `list-undo`, then `undo 3`, will undo third command in command history.
 
 #### Deleting a task : `delete`
 Format: `delete` INDEX<br>
@@ -128,10 +126,10 @@ Format: `edit` INDEX NEWTASK<br>
  <br> <img src="images/editCmd.png" width="600"> </br>
 Diagram 5: Edits the 2nd task on the list
 
-#### Saving Taskell Data in a Different Folder
+#### Saving Taskell Data in a Different Folder : `save` 
 
-Format: `save` /FOLDERPATH<br>
-Example: `save` /Jim/Dropbox <br>
+Format: `save FOLDERPATH`<br>
+Example: `save C:/Users/Jim/Documents`
 
 #### Clearing all entries :  `clear`
 Format: `clear`  <br>
@@ -156,11 +154,11 @@ Clear | `clear`
 Delete | `delete` INDEX
 Edit | `edit` INDEX NEWTASK
 Find | `find` KEYWORD [MORE_KEYWORDS]
-Find Tag | `find-tag` KEYWORD
-List | `list`
-List Given Day | `list` [DATE]
-List Tasks Done | `list` [DONE]
+Find Tag | `find-tag` KEYWORD [MORE_KEYWORDS]
 Help | `help`
+List | `list`
+List Given Day | `list-date` [DATE]
+List Tasks Done | `list-done` [DONE]
 Undo | `undo`
 
 ## Appendix A
