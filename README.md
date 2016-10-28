@@ -4,7 +4,7 @@
 
 # Taskell
 
-<img src="docs/images/GUI.png" width="600"><br>
+<img src="docs/images/taskell_main_screenshot.png" width="600"><br>
 
 * This is a desktop task manager application. It has a GUI but most of the user interactions happen using 
   a CLI (Command Line Interface).
