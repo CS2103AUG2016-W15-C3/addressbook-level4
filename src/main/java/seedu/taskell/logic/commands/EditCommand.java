@@ -9,6 +9,7 @@ import seedu.taskell.logic.commands.Command;
 import seedu.taskell.logic.commands.CommandResult;
 import seedu.taskell.logic.commands.UndoCommand;
 import seedu.taskell.model.task.Description;
+import seedu.taskell.model.task.FloatingTask;
 import seedu.taskell.model.task.ReadOnlyTask;
 import seedu.taskell.model.task.Task;
 import seedu.taskell.model.task.TaskDate;
@@ -101,6 +102,10 @@ public class EditCommand extends Command {
         if (hasChangedPriority == false) {
             taskPriority = taskToEdit.getTaskPriority();
         }
+        if(taskToEdit.getTaskType().equals(Task.FLOATING_TASK) && (hasChangedStartTime == true ||
+                hasChangedEndTime == true || hasChangedStartDate == true || hasChangedEndDate == true )){
+            return new CommandResult(FloatingTask.EDIT_FLOATING_NOT_ALLOWED);
+        }
         TaskDate today = TaskDate.getTodayDate();
         TaskTime currentTime = TaskTime.getTimeNow();
 
@@ -115,7 +120,7 @@ public class EditCommand extends Command {
         } else {
             // valid
         }
-
+        
         Task newTask = new Task(description, taskToEdit.getTaskType(), startDate, endDate, startTime, endTime,
                 taskPriority, taskToEdit.getRecurringType(), taskToEdit.getTaskStatus(), taskToEdit.getTags());
 
