@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class FindCommandTest extends TaskManagerGuiTest {
 
     @Test
-    public void find_nonEmptyList() {
+    public void find_nonEmptyList_success() {
         assertFindResult("find Mark"); //no results
         assertFindResult("find Books", td.borrowBooks, td.discardBooks); //multiple results
 
@@ -39,7 +39,7 @@ public class FindCommandTest extends TaskManagerGuiTest {
     /** @@author **/
 
     @Test
-    public void find_emptyList(){
+    public void find_emptyList_noResults() {
         commandBox.runCommand("clear");
         assertFindResult("find Jean"); //no results
     }

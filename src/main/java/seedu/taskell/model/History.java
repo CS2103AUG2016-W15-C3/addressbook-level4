@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import seedu.taskell.model.task.Task;
 
-/** API of History (list of CommandHistory objects)
+/** API of History, holds command history available for undo
  */
 public interface History {
     

@@ -11,6 +11,8 @@ import seedu.taskell.commons.events.undo.ExecutedIncorrectCommandEvent;
 import seedu.taskell.logic.commands.AddCommand;
 import seedu.taskell.model.task.Task;
 
+/** Implementation of History API, manages command history available for undo
+ */
 public class HistoryManager implements History {
 
     private static final Logger logger = LogsCenter.getLogger(HistoryManager.class.getName());
@@ -41,6 +43,8 @@ public class HistoryManager implements History {
     }
 
     @Override
+    /** returns list of command history's user input strings
+     * */
     public ArrayList<String> getListCommandText() {
         assert historyList != null;
         
@@ -55,11 +59,15 @@ public class HistoryManager implements History {
     }
     
     @Override
-    public void updateList() {
+    /** should be called whenever DeleteCommand is executed
+     *  deletes history of the task deleted
+     * */
+    public synchronized void updateList() {
         if (model == null) {
             logger.severe("Model is null");
             return;
         }
+        
         for (CommandHistory commandHistory: historyList) {
             if (isCommandTypeAddOrEdit(commandHistory) 
                     && !isTaskPresent(commandHistory.getTask())) {

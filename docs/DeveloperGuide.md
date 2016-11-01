@@ -361,7 +361,6 @@ Priority | As a ... | I want to ... | So that I can...
 **MSS**
 
 1. User requests to add tasks
-
 2. Taskell adds the task<br>
 Use case ends
 
@@ -412,7 +411,7 @@ Use case ends
 
 4a. User tries to mark a completed task as completed
   
-#### Use case: Help task
+#### Use case: Help command
 
 **MSS**
 
@@ -427,7 +426,7 @@ Use case ends
 
 > 3a1. Taskell stil displays the help message <br>
 
-#### Use case: Find task
+#### Use case: Find tasks
 
 **MSS**
 
@@ -463,13 +462,15 @@ Use case ends
 > 3a1, 3b1 and 3c1. Taskell shows an error message <br>
   Use case resumes at step 2
 
-#### Use case: Undo task
+<!--- @@author A0142130A --->
+
+#### Use case: Undo command
 
 **MSS**
 
 1. User enters a command
 2. Taskell executes it
-3. User requests to list undo commands history
+3. User requests to view undo commands history
 4. User requests to undo command at specific index
 5. Taskell revert the command <br>
 Use case ends
@@ -483,6 +484,8 @@ Use case ends
 4a. The user enters invalid index
 
 > 4a1. Taskell shows error message indicating index is invalid<br>
+
+<!--- @@author --->
 
 #### Use case: List task
 
@@ -498,6 +501,8 @@ Use case ends
 
 > 2a1. Taskell shows an error message <br>
   Use case resumes at step 2
+  
+<!--- @@author A0142130A --->
   
 #### Use case: View calendar for the week
 
@@ -519,6 +524,8 @@ Use case ends
 2a. Data cannot be written to the requested folder (invalid directory or access prohibited)
 
 > 2a1. Taskell shows an error message and still saves data in previous old location.<br>
+
+<!--- @@author --->
 
 #### Use case: Clear task
 
@@ -577,6 +584,8 @@ NIL
 1. Has limited number of priority levels<br>
 2. Has no undo operation<br>
 
+<!--- @@author A0142130A --->
+
 #### Remember the Milk
 **Pros:**<br>
 1. Can be used offline and tasks are synced once internet connection is established<br>
@@ -590,6 +599,8 @@ NIL
 2. Need to remember lots of shortcuts, so user is less likely to use them<br>
 3. Has a cluttered interface, which is not intuitive<br>
 4. Does not support calendar view in-house<br>
+
+<!--- @@author --->
 
 #### Google Calendar
 **Pros:**<br>

@@ -90,7 +90,7 @@ Example: `add ` netball training <i>endat</i> 7pm<br>
 
 <!--- @@author -->
 
-<!--- @@author A0148004Rz --->
+<!--- @@author A0148004R --->
 
 #### Listing tasks : `list`
 Formats: 
@@ -169,16 +169,16 @@ Example: `hist`, then `undo 3`, will undo third command in command history.<br>
 To delete a task, use the delete command. This command deletes the task at a specified INDEX. The index refers to the index number shown in the most recent listing.<br>
 Format: `delete INDEX`<br>
  <br><img src="images/delete1.png" width="600"></br>
-Diagrams 5 and 6: Entering `delete 1 will delete "Arrange meeting with XYZ company".`<br>
+Diagrams 5: Entering `delete 1 will delete "Arrange meeting with XYZ company".`<br>
 
 Example: `find violin, then delete 1<br>
 This deletes the 1st task in the results of the find command.
 
 Format: `delete` INDEX<br>
  <br><img src="images/delete1.png" width="800"></br>
-Diagram 4: Deletes the first task in the list.<br>
+Diagram 6: Deletes the first task in the list.<br>
 
-<!--- @@author A0148004Rz --->
+<!--- @@author A0148004R --->
 
 #### Marking a task as completed: `done`
 Format: `done` INDEX<br>
@@ -194,14 +194,16 @@ To edit a task<br>
 Formats: 
 - `edit ` INDEX `st: `[NEWSTARTTIME] `et: `[NEWENDTIME] `desc: `[NEWDESCRIPTION] `sd: `[NEWSTARTDATE] `ed: `[NEWENDDATE] `p: `[NEWPRIORITY]<br>
  <br> <img src="images/editCmd.png" width="600"> </br>
-Diagram 5: Edits the 1st task on the list. Entering "edit 1 desc: send all emails sd: 11-11-2016 ed: 12-11-2016 st: 3pm et: 4pm p: 3" updates description to "send all emails", start date to 11-11-2016, end date to 12-11-2016, start time to 3pm end time to 4pm and priority to 3.<br>
+Diagram 5: Edits the 1st task on the list.  <br>
+Entering "edit 1 desc: send all emails sd: 11-11-2016 ed: 12-11-2016 st: 3pm et: 4pm p: 3", will update description to "send all emails", start date to 11-11-2016, end date to 12-11-2016, start time to 3pm end time to 4pm and priority to 3.<br>
 
 <!--- @@author --->
 
 <!--- @@author A0142130A ---> 
 
 #### Showing calendar view : `calendar` or `cal`
-You can view the calendar for the week on the right panel to refer to the dates when adding tasks and scheduling events.<br>
+You can view the calendar for the week on the right panel to refer to the dates and any events scheduled 
+when adding tasks and scheduling events.<br>
 To save your time, Taskell has a short form command `cal`. <br>
 Format: `calendar`<br>
 
@@ -248,7 +250,7 @@ List Incomplete Tasks| `list`
 List All Tasks | `list-all`
 List Given Day | `list-date` [DATE]
 List Tasks Done | `list-done` [DONE]
-Undo | `undo INDEX`
+Undo | `undo` or `undo` INDEX
 
 ## Appendix A
 

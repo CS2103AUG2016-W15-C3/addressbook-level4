@@ -24,6 +24,8 @@ public class IncorrectCommand extends Command {
 
     /** @@author A0142130A **/
     
+    /** for setting latest command as an undoable command
+     * */
     public static void setIsUndoableCommand(boolean value) {
         isAddEditDeleteCommand = value;
     }
@@ -32,6 +34,8 @@ public class IncorrectCommand extends Command {
         return isAddEditDeleteCommand;
     }
     
+    /** if latest command is an undoable command, need to delete its command history
+     * */
     private void indicateExecutedIncorrectCommand() {
         EventsCenter.getInstance().post(new ExecutedIncorrectCommandEvent(isAddEditDeleteCommand));
     }

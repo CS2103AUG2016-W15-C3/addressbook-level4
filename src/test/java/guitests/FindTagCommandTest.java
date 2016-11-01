@@ -20,7 +20,7 @@ public class FindTagCommandTest extends TaskManagerGuiTest {
     }
     
     @Test
-    public void findTag_MulitpleKeywords_success() {
+    public void findTag_multipleKeywords_success() {
         assertFindResult("find-tag friends owesMoney", td.archivePastEmails, td.borrowBooks, td.collectParcel); //multiple results
     } 
 

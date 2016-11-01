@@ -16,7 +16,7 @@ import seedu.taskell.model.task.UniqueTaskList.DuplicateTaskException;
 import seedu.taskell.model.task.UniqueTaskList.TaskNotFoundException;
 
 /**
- * Undo previously executed command (add or delete only for now)
+ * Undo previously executed commands (add, delete, edit)
  * Note: only for current session only (meaning after app is closed, history will be cleared)
  */
 public class UndoCommand extends Command {
