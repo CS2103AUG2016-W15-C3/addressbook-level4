@@ -15,6 +15,7 @@ import seedu.taskell.model.tag.UniqueTagList;
 public class FloatingTask extends Task {
     
     public static final String RECURRING_TYPE_NOT_ALLOWED = "Floating task cannot be recurring";
+    public static final String EDIT_FLOATING_NOT_ALLOWED = "Floating task does not have date and time.";
     
     public FloatingTask(String description, String taskPriority, String recurringType, String taskStatus, UniqueTagList tags) throws IllegalValueException {
         this(new Description(description),
