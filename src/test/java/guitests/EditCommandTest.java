@@ -23,7 +23,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
     public static final String VALID_DATE = "30-12-2016";
 
     @Test
-    public void edit_onePart_exceptionThrown() throws IllegalValueException {
+    public void edit_desc_exceptionThrown() throws IllegalValueException {
         TestTask[] currentList = td.getTypicalTasks();
         int targetIndex = 1;
 
@@ -59,10 +59,17 @@ public class EditCommandTest extends TaskManagerGuiTest {
                 COMMAND_WORD + " " + targetIndex + " desc: finish homework " + " st: 8am " + " desc: submit homework");
         assertResultMessage("Invalid command format! \n" + MESSAGE_USAGE);
 
+    }
+
+    @Test
+    public void edit_priority_exceptionThrown() throws IllegalValueException {
+        TestTask[] currentList = td.getTypicalTasks();
+        int targetIndex = 1;
+
         // edit the priority of first task in the list
         targetIndex = 1;
-        oldTask = currentList[targetIndex - 1];
-        newTask = new TestTask(oldTask.getDescription(), oldTask.getTaskType(),
+        TestTask oldTask = currentList[targetIndex - 1];
+        TestTask newTask = new TestTask(oldTask.getDescription(), oldTask.getTaskType(),
                 new TaskPriority(TaskPriority.DEFAULT_PRIORITY), oldTask.getStartTime(), oldTask.getEndTime(),
                 oldTask.getStartDate(), oldTask.getEndDate(), oldTask.getRecurringType(), oldTask.getTaskStatus(),
                 oldTask.getTags());
@@ -97,10 +104,17 @@ public class EditCommandTest extends TaskManagerGuiTest {
                 + " p: " + TaskPriority.HIGH_PRIORITY);
         assertResultMessage("Invalid command format! \n" + MESSAGE_USAGE);
 
+    }
+
+    @Test
+    public void edit_startTime_exceptionThrown() throws IllegalValueException {
+        TestTask[] currentList = td.getTypicalTasks();
+        int targetIndex = 1;
+
         // edit the start time of first task in the list
         targetIndex = 1;
-        oldTask = currentList[targetIndex - 1];
-        newTask = new TestTask(oldTask.getDescription(), oldTask.getTaskType(), oldTask.getTaskPriority(),
+        TestTask oldTask = currentList[targetIndex - 1];
+        TestTask newTask = new TestTask(oldTask.getDescription(), oldTask.getTaskType(), oldTask.getTaskPriority(),
                 new TaskTime(TaskTime.MIDNIGHT), oldTask.getEndTime(), oldTask.getStartDate(), oldTask.getEndDate(),
                 oldTask.getRecurringType(), oldTask.getTaskStatus(), oldTask.getTags());
 
@@ -133,10 +147,17 @@ public class EditCommandTest extends TaskManagerGuiTest {
                 + TaskPriority.DEFAULT_PRIORITY + " st: " + TaskTime.DEFAULT_START_TIME);
         assertResultMessage("Invalid command format! \n" + MESSAGE_USAGE);
 
+    }
+
+    @Test
+    public void edit_endTime_exceptionThrown() throws IllegalValueException {
+        TestTask[] currentList = td.getTypicalTasks();
+        int targetIndex = 1;
+
         // edit the end time of first task in the list
         targetIndex = 1;
-        oldTask = currentList[targetIndex - 1];
-        newTask = new TestTask(oldTask.getDescription(), oldTask.getTaskType(), oldTask.getTaskPriority(),
+        TestTask oldTask = currentList[targetIndex - 1];
+        TestTask newTask = new TestTask(oldTask.getDescription(), oldTask.getTaskType(), oldTask.getTaskPriority(),
                 oldTask.getStartTime(), new TaskTime(TaskTime.DEFAULT_END_TIME), oldTask.getStartDate(),
                 oldTask.getEndDate(), oldTask.getRecurringType(), oldTask.getTaskStatus(), oldTask.getTags());
 
@@ -170,7 +191,7 @@ public class EditCommandTest extends TaskManagerGuiTest {
         assertResultMessage("Invalid command format! \n" + MESSAGE_USAGE);
 
     }
-
+    
     @Test
     public void edit_fewPart_exceptionThrown() throws IllegalValueException {
         TestTask[] currentList = td.getTypicalTasks();

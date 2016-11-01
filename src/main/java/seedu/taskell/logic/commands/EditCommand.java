@@ -72,18 +72,8 @@ public class EditCommand extends Command {
         taskPriority = newPriority;
         this.hasChangedPriority = hasChangedPriority;
     }
-
-    @Override
-    public CommandResult execute() {
-
-        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
-
-        if (lastShownList.size() < targetIndex) {
-            indicateAttemptToExecuteIncorrectCommand();
-            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
-
-        ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
+    
+    public void getEditInformation(ReadOnlyTask taskToEdit){
         if (hasChangedDescription == false) {
             description = taskToEdit.getDescription();
         }
@@ -102,10 +92,26 @@ public class EditCommand extends Command {
         if (hasChangedPriority == false) {
             taskPriority = taskToEdit.getTaskPriority();
         }
+    }
+
+    @Override
+    public CommandResult execute() {
+
+        UnmodifiableObservableList<ReadOnlyTask> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() < targetIndex) {
+            indicateAttemptToExecuteIncorrectCommand();
+            return new CommandResult(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        ReadOnlyTask taskToEdit = lastShownList.get(targetIndex - 1);
+        getEditInformation(taskToEdit);
+        
         if(taskToEdit.getTaskType().equals(Task.FLOATING_TASK) && (hasChangedStartTime == true ||
                 hasChangedEndTime == true || hasChangedStartDate == true || hasChangedEndDate == true )){
             return new CommandResult(FloatingTask.EDIT_FLOATING_NOT_ALLOWED);
         }
+        
         TaskDate today = TaskDate.getTodayDate();
         TaskTime currentTime = TaskTime.getTimeNow();
 
