@@ -381,7 +381,7 @@ public class Parser {
                 // System.out.println("Priority is " + taskPriority);
             }
             if (!(parts.equals(DESC) || parts.equals(ST) || parts.equals(ET) || parts.equals(SD)
-                    || parts.equals("ed") || parts.equals(P)) && lastChar == false) {
+                    || parts.equals(ED) || parts.equals(P)) && lastChar == false) {
                 // System.out.println("I am here as incrct because of parts
                 // "+parts);
                 return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));

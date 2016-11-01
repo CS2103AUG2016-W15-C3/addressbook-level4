@@ -1,4 +1,5 @@
 //@@author A0142073R
+
 package seedu.taskell.logic.commands;
 
 import seedu.taskell.commons.core.Messages;
@@ -29,6 +30,12 @@ public class EditCommand extends Command {
             + " 1 desc: buy cake st: 7am et: 8am sd: 11-12-2016 ed: 12-12-2016 p: 2\n";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Original Task: %1$s \n\nUpdated Task: %2$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
+    public static final String TASK_NOT_FOUND = "The target task is missing";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Start time must be before end time"
+            + "\nTime should not be before current time";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Start date must be before end date"
+            + "\nAll date should not be before current date";
 
     private final int targetIndex;
 
@@ -94,17 +101,34 @@ public class EditCommand extends Command {
         if (hasChangedPriority == false) {
             taskPriority = taskToEdit.getTaskPriority();
         }
+        TaskDate today = TaskDate.getTodayDate();
+        TaskTime currentTime = TaskTime.getTimeNow();
+
+        if (startDate.isBefore(today) || endDate.isBefore(today)) {
+            return new CommandResult(MESSAGE_DATE_CONSTRAINTS);
+        } else if (startDate.isAfter(endDate)) {
+            return new CommandResult(MESSAGE_DATE_CONSTRAINTS);
+        } else if (startDate.equals(today) && startTime.isBefore(currentTime)) {
+            return new CommandResult(MESSAGE_TIME_CONSTRAINTS);
+        } else if (startDate.equals(endDate) && startTime.isAfter(endTime)) {
+            return new CommandResult(MESSAGE_TIME_CONSTRAINTS);
+        } else {
+            // valid
+        }
 
         Task newTask = new Task(description, taskToEdit.getTaskType(), startDate, endDate, startTime, endTime,
                 taskPriority, taskToEdit.getRecurringType(), taskToEdit.getTaskStatus(), taskToEdit.getTags());
 
         try {
             model.editTask(taskToEdit, newTask);
-        } catch (TaskNotFoundException | DuplicateTaskException pnfe) {
-            assert false : "The target task cannot be missing";
-        } 
+        } catch (DuplicateTaskException pnfe) {
+            return new CommandResult(MESSAGE_DUPLICATE_TASK);
+        } catch (TaskNotFoundException pnfe) {
+            return new CommandResult(TASK_NOT_FOUND);
+        }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, taskToEdit, newTask));
     }
 }
+
 // @@author
