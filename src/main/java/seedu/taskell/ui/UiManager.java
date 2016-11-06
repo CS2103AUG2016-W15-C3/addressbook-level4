@@ -137,7 +137,10 @@ public class UiManager extends ComponentManager implements Ui {
     }
     
     /** @@author **/
-
+    private Alert showConfirmHelpAlertDialogAndWait() {
+        return showAlertDialogAndWaitForConfirm(Alert.AlertType.CONFIRMATION, "Help Command", 
+                "Help", "BLALALALALALALALAL");
+    }
     //==================== Event Handling Code =================================================================
 
     @Subscribe
@@ -149,7 +152,11 @@ public class UiManager extends ComponentManager implements Ui {
     @Subscribe
     private void handleShowHelpEvent(ShowHelpRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        mainWindow.handleHelp();
+        Alert alert = showConfirmHelpAlertDialogAndWait();
+        if (alert.getResult() == ButtonType.OK) {
+            logger.info("Help");
+            HelpCommand.getInstance().executeClear();
+        }
     }
 
     @Subscribe
