@@ -565,6 +565,9 @@ Use case ends
 1. User requests to view calendar
 2. Taskell displays calendar
   
+**Extensions**<br>
+NIL
+
 #### Use case: Save data to specified folder
 
 **MSS**
