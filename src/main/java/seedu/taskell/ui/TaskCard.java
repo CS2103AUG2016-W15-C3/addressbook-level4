@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import seedu.taskell.model.task.ReadOnlyTask;
 import seedu.taskell.model.task.RecurringType;
 import seedu.taskell.model.task.Task;
-import seedu.taskell.model.task.TaskDate;
 import seedu.taskell.model.task.TaskPriority;
 import seedu.taskell.model.task.TaskStatus;
 
