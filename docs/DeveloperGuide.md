@@ -18,7 +18,7 @@
 
 Taskell is a simple software for users to keep track of their daily tasks and manage their busy schedule. Keyboard lovers will be able to experience the full benefit of Taskell as it implements a command-line interface.
 
-This developer guide will help you understand the design and implementation of Taskell. It helps you understand how Taskell works and how you can contribute for further development. This guide follows a top-down approach by giving an overview of the essential components first, followed by thorough explanation subsequently.
+This developer guide will help you understand the design and implementation of Taskell. You get to know how Taskell works and how you can contribute for further development. This guide follows a top-down approach by giving an overview of the essential components first, followed by thorough explanation subsequently.
 
 <!--- @@author --->
 
@@ -70,7 +70,7 @@ This developer guide will help you understand the design and implementation of T
 <p align="center">
 <img src="images/Architecture.png" width="800"><br>
 
-<em>Diagram 1: Architecture Diagram</em>
+<em>Figure 1: Architecture Diagram</em>
 </p>
 
 The Architecture Diagram given above explains the high-level design of the Application.
@@ -100,7 +100,7 @@ Each of the five components
 <p align="center">
 <img src="images/LogicClassDiagram.png" width="800"><br>
 
-<em>Diagram 2: Logic Class Diagram</em>
+<em>Figure 2: Logic Class Diagram</em>
 </p>
 
 The `Logic` component above defines it's API in the `Logic.java`
@@ -109,7 +109,7 @@ interface and exposes its functionality using the `LogicManager.java` class.<br>
 <p align="center">
 <img src="images\SDforDeleteTask.png" width="800"><br>
 
-<em>Diagram 3: Sequence Diagram for Delete Task</em>
+<em>Figure 3: Sequence Diagram for Delete Task</em>
 </p>
 
 The Sequence Diagram above shows how the components interact for the scenario where the user issues the
@@ -121,7 +121,7 @@ command `delete 1`.
 <p align="center">
 <img src="images\SDforDeleteTaskEventHandling.png" width="800"><br>
 
-<em>Diagram 4: Sequence Diagram for Delete Task Event Handling</em>
+<em>Figure 4: Sequence Diagram for Delete Task Event Handling</em>
 </p>
 
 The diagram above shows how the `EventsCenter` reacts to that event, which eventually results in the updates
@@ -138,7 +138,7 @@ The sections below give more details of each component.
 <p align="center">
 <img src="images/UiClassDiagram.png" width="800"><br>
 
-<em>Diagram 5: UI Class Diagram </em>
+<em>Figure 5: UI Class Diagram </em>
 </p>
 
 The diagram above gives an overview of how the `UI`component is implemented.<br>
@@ -165,7 +165,7 @@ The `UI` component,
 <p align="center">
 <img src="images/LogicClassDiagram.png" width="800"><br>
 
-<em>Diagram 6: Logic Class Diagram </em>
+<em>Figure 6: Logic Class Diagram </em>
 </p>
 
 The diagram above gives an overview of how the `Logic` component is implemented.<br>
@@ -179,7 +179,7 @@ The `Logic` component,
 <p align="center">
 <img src="images/AddTaskSdForLogic.png" width="800"><br>
   
-<em>Diagram 7: Add Task Sequence Diagram For Logic</em>
+<em>Figure 7: Add Task Sequence Diagram For Logic</em>
 </p>
 
 <!--- @@author A0142130A --->
@@ -189,7 +189,7 @@ The diagram above shows the Sequence Diagram for interactions within the `Logic`
 <p align="center">
 <img src="images/DeleteTaskSdForLogic.png" width="800"><br>
   
-<em>Diagram 8: Delete Task Sequence Diagram For Logic</em>
+<em>Figure 8: Delete Task Sequence Diagram for Logic</em>
 </p>
 
 The diagram above shows the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.<br>
@@ -201,7 +201,7 @@ The diagram above shows the Sequence Diagram for interactions within the `Logic`
 <p align="center">
 <img src="images/ModelClassDiagram.png" width="800"><br>
 
-<em>Diagram 9: Model Class Diagram </em>
+<em>Figure 9: Model Class Diagram </em>
 </p>
 
 The diagram above gives an overview of how the `Model` component is implemented.<br>
@@ -219,7 +219,7 @@ The `Model` component,
 <p align="center">
 <img src="images/StorageClassDiagram.png" width="800"><br>
 
-<em>Diagram 10: Storage Class Diagram </em>
+<em>Figure 10: Storage Class Diagram </em>
 </p>
 
 The diagram above gives an overview of how the `Storage` component is implemented.<br>
@@ -236,7 +236,7 @@ The `Storage` component,
 <p align="center">
 <img src="images/HistoryClassDiagram.png" width="500"><br>
 
-<em>Diagram 11: History Class Diagram </em>
+<em>Figure 11: History Class Diagram </em>
 </p>
 
 The diagram above gives an overview of how the `History` component is implemented.<br>
