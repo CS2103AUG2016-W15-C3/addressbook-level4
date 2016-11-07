@@ -109,9 +109,9 @@ public class TaskCard extends UiPart{
     private void setBackgroundColour() {
         if (task.getTaskStatus().toString().equals(TaskStatus.FINISHED)) {
             cardPane.setStyle("-fx-background-color: #4DD0E1"); //cyan 300
-        } else if (task.getTaskStatus().toString().equals(TaskStatus.INCOMPLETE) 
-                && isOverdue()) {
-            cardPane.setStyle("-fx-background-color: #212121");
+        } else if (isOverdue()) {
+            cardPane.setStyle("-fx-background-color: #212121"); //grey 900
+            
             description.setStyle("-fx-text-fill: white");
             id.setStyle("-fx-text-fill: white");
             startDate.setStyle("-fx-text-fill: white");
