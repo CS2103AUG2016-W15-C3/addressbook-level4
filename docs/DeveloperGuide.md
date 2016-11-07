@@ -374,9 +374,9 @@ Priority | As a ... | I want to ... | So that I can...
 `* * *` | user | undo my previous action | correct any mistakes made.
 `* * *` | user | mark a task as done | focus on the uncompleted tasks.
 `* * *` | user | have flexible command format |have various options to execute a command.
-`* * *` | user | specify a folder with cloud syncing service as the storage location | I can easily access my task manager from different computers.
-`* * *` | user | I want to see a list of completed tasks | view all the tasks I had done.
-`* *` | user |  delete tasks based on a certain index | delete a few tasks instead of one.
+`* * *` | user | specify a folder with cloud syncing service as the storage location | easily access my task manager from different computers.
+`* * *` | user | I want to see a list of completed tasks | view all the tasks that I have done.
+`*` | user |  delete tasks based on a certain index | delete a few tasks instead of one.
 `*` | user | set some of my task recursively | schedule them on a daily/weekly/monthly basis.
 `*` | user | be able to block multiple timeslots, and release the timeslots when timing is confirmed|  schedule in events which have uncertain timings more efficiently.
 `*` | user | sort tasks by priority | view the most important tasks.
@@ -436,11 +436,11 @@ Use case ends
 
 **Extensions**
 
-2a. The list is empty
+2a. The list is empty<br>
+2b. User tries to mark a completed task as completed<br>
+3a. The given index is invalid<br>
 
-3a. The given index is invalid
-
-> 3a1. Taskell shows an error message <br>
+> 3a1, 2b1, 2a1. Taskell shows an error message <br>
   Use case resumes at step 2
 
 #### Use case: Undone task
@@ -459,25 +459,26 @@ Use case ends
 
 3a. The given index is invalid
 
-> 3a1. Taskell shows an error message <br>
+3b. User tries to mark an uncompleted task as uncompleted
+
+> 2a1, 3a1, 3b1. Taskell shows an error message <br>
   Use case resumes at step 2
   
-4a. User tries to mark a uncompleted task as uncompleted
   
-#### Use case: Help command
+#### Use case: Help task
 
 **MSS**
 
 1. User requests to view the different command
 2. User enters "help"
-3. User displays a summary of all the different command.
+3. User guide is displayed.<br>
 Use case ends
 
 **Extensions**
 
 2a. The user types "help" incorrectly
 
-> 3a1. Taskell stil displays the help message <br>
+> 2a1. Taskell displays the error message <br>
 
 #### Use case: Find tasks
 
@@ -501,7 +502,7 @@ Use case ends
 2. Taskell shows a list of tasks
 3. User requests to edit either the description, date, time or priority of a task
 4. Taskell edits the respective field
-5. Taskell displays the both the old and updated version of the task <br>
+5. Taskell displays the both the original and updated version of the task <br>
 Use case ends
 
 **Extensions**
@@ -517,7 +518,7 @@ Use case ends
 
 <!--- @@author A0142130A --->
 
-#### Use case: Undo command
+#### Use case: Undo task
 
 **MSS**
 
@@ -545,7 +546,7 @@ Use case ends
 **MSS**
 
 1. User requests to list either all tasks, incomplete tasks, completed tasks, task with specific start date or task with specific priority
-2. Taskell shows a list of tasks accordingly
+2. Taskell shows a list of tasks accordingly<br>
 Use case ends
 
 **Extensions**
@@ -589,7 +590,7 @@ Use case ends
 1. User requests to clear all tasks
 2. Taskell shows pop-up to ask for confirmation
 3. User confirms
-4. Taskell deletes all tasks
+4. Taskell deletes all tasks<br>
 Use case ends
 
 **Extensions**
@@ -605,10 +606,10 @@ Use case ends
 **MSS**
 
 1. User requests to exit Taskell
-2. Taskell window closes
+2. Taskell window closes<br>
 Use case ends
 
-**Extensions**
+**Extensions**<br>
 NIL
 
 <!--- @@author --->
@@ -631,56 +632,11 @@ NIL
 
 > Tasks with no deadline
 
+##### Overdue Tasks
+
+> Tasks with the deadline of the task elapsed
+
 ## Appendix E : Product Survey
-#### WunderList
-**Pros:**<br>
-1. Has support for cross-platform operations<br>
-2. Can share tasks with other people and manage them<br> 
-3. Can categorize tasks into different categories<br>
-4. Can attach different types of file inside the task, such as photos, PDF and PowerPoint<br>
-
-**Cons:**<br>
-1. Has limited number of priority levels<br>
-2. Has no undo operation<br>
-
-<!--- @@author A0142130A --->
-
-#### Remember the Milk
-**Pros:**<br>
-1. Can be used offline and tasks are synced once internet connection is established<br>
-2. Can handle some natural languages processing by saving deadlines from task information itself (e.g. Do math homework tomorrow: Saves task with deadline set to tomorrow)<br>
-3. Can undo when marking tasks as done (recover from accidentally marking a task as done)<br>
-4. Can set priority, and list tasks by priority<br>
-5. Can set recursive tasks<br>
-
-**Cons:**<br>
-1. Need to click frequently to enter or edit a task<br>
-2. Need to remember lots of shortcuts, so user is less likely to use them<br>
-3. Has a cluttered interface, which is not intuitive<br>
-4. Does not support calendar view in-house<br>
-
-<!--- @@author --->
-
-#### Google Calendar
-**Pros:**<br>
-1. Can add in public holidays <br>
-2. Can update in terms of time zone<br>
-3. Can customize background picture<br>
-
-**Cons:**<br>
-1. Does not have flexibility in viewing the calendar<br>
-2. Has too much information in 1 page in application<br>
-
-#### Any.do
-**Pros:**<br>
-1. Displays a reminder when the task is almost due (set in advance)<br>
-2. Able to clear all tasks in one go<br>
-3. Do a daily review at the start/end of day<br>
-4. Arranges tasks by today, tomorrow, someday<br>
-
-**Cons:**<br>
-1. Requires internet connection<br>
-2. Has no support for recurring tasks<br>
 
 <!--- @@author A0148004R --->
 
@@ -691,6 +647,6 @@ Undo | Not Available | Available | Not Available | Available | Available
 Sync across multiple platform | Available | Available | Available | Available | Available
 Internet required | Required | Required | Required | Required | Not Required
 Calendar | Not Available | Available | Available | Available | Available
-Other Features | Attach different files and picture inside the task | Handle some natural languages | Able to add public holiday |Do a daily review at the start/end of day | Support for recurring tasks
+Other Features | Attach different files and picture inside the task | Handle some natural languages | Able to add public holiday |Do a daily review at the start/end of day | Support for Recurring Tasks
 
 <!--- @@author --->
