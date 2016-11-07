@@ -1,5 +1,8 @@
 package seedu.taskell.ui;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -8,6 +11,7 @@ import javafx.scene.layout.Pane;
 import seedu.taskell.model.task.ReadOnlyTask;
 import seedu.taskell.model.task.RecurringType;
 import seedu.taskell.model.task.Task;
+import seedu.taskell.model.task.TaskDate;
 import seedu.taskell.model.task.TaskPriority;
 import seedu.taskell.model.task.TaskStatus;
 
@@ -100,11 +104,37 @@ public class TaskCard extends UiPart{
     
     /** @@author A0142130A **/
     /** determines if task is complete, to set to darker colour
+     *  determines if task is overdue, to change to black
      * */
     private void setBackgroundColour() {
         if (task.getTaskStatus().toString().equals(TaskStatus.FINISHED)) {
             cardPane.setStyle("-fx-background-color: #4DD0E1"); //cyan 300
+        } else if (task.getTaskStatus().toString().equals(TaskStatus.INCOMPLETE) 
+                && isOverdue()) {
+            cardPane.setStyle("-fx-background-color: #212121");
+            description.setStyle("-fx-text-fill: white");
+            id.setStyle("-fx-text-fill: white");
+            startDate.setStyle("-fx-text-fill: white");
+            startTime.setStyle("-fx-text-fill: white");
+            endDate.setStyle("-fx-text-fill: white");
+            endTime.setStyle("-fx-text-fill: white");
+            tags.setStyle("-fx-text-fill: white");
+            
+            //means priority pane not coloured, and will be black
+            if (task.getTaskPriority().toString().equals(TaskPriority.NO_PRIORITY)) {
+                recurringType.setStyle("-fx-text-fill: white");
+                taskStatus.setStyle("-fx-text-fill: white");
+            }
         }
+    }
+
+    /** checks if end date is before now OR
+     *  end date and now is same, but end time is before now
+     * */
+    private boolean isOverdue() {
+        return task.getEndDate().getLocalDate().isBefore(LocalDate.now()) 
+                || (task.getEndDate().getLocalDate().isEqual(LocalDate.now()) 
+                        && task.getEndTime().getLocalTime().isBefore(LocalTime.now()));
     }
     /** @@author **/
     
